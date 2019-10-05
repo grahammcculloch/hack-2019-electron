@@ -36,4 +36,10 @@ export const fileFilters = {
     },
     allFiles
   ],
+  output: [
+    {
+      name: "Video files",
+      extensions: ['mp4'],
+    }
+  ],
 };

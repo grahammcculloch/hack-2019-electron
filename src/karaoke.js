@@ -8,10 +8,10 @@ module.exports = {
     execute
 };
 
-async function execute(hereThisFolder, backgroundFile) {
+async function execute(hereThisFolder, backgroundFile, outputFile) {
     let vttFilePath = await getVtt(hereThisFolder);
     let framesFolder = await renderFrames.render(vttFilePath, backgroundFile);
-    let videoPath = await renderVideo.renderToVideo(framesFolder, hereThisFolder, 'video.mp4');
+    let videoPath = await renderVideo.renderToVideo(framesFolder, hereThisFolder, outputFile);
     shell.rm('-rf', framesFolder);
     return videoPath;
 }

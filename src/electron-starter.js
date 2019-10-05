@@ -2,7 +2,7 @@ const electron = require('electron');
 const karaoke = require('./karaoke');
 const { getProjectStructure } = require('./here-this');
 // Module to control application life.
-const { app, ipcMain } = electron;
+const { app, ipcMain, shell } = electron;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 const spawn = require('child_process').spawn;
@@ -54,11 +54,17 @@ function handleGetProjects() {
   });
 }
 
+function handleOpenOutputFolder() {
+  ipcMain.on('open-output-folder', async (event, outputFile) => {
+    shell.showItemInFolder(outputFile);
+  });
+}
+
 function handleSubmission() {
   ipcMain.on('did-start-conversion', async (event, args) => {
     console.log('Starting command line', args);
-    const { hearThisChapterFolder, backgroundFile } = args;
-    let videoPath = await karaoke.execute(hearThisChapterFolder, backgroundFile);
+    const { hearThisChapterFolder, backgroundFile, outputFile } = args;
+    let videoPath = await karaoke.execute(hearThisChapterFolder, backgroundFile, outputFile);
 
     const retArgs = { outputFile: videoPath };
     console.log('Command line process finished', retArgs);
@@ -91,6 +97,7 @@ app.on('ready', () => {
   createWindow();
   handleSubmission();
   handleGetProjects();
+  handleOpenOutputFolder();
 });
 
 // Quit when all windows are closed.

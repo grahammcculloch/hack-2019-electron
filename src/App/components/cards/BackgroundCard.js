@@ -17,7 +17,7 @@ class BackgroundCard extends React.PureComponent {
         options={{
           title: 'Select Background File',
           filters: fileFilters.background,
-          properties: ['openFile', 'multiSelections'],
+          properties: ['openFile'],
         }}
         onFileSelected={setBackgroundFile}
       />

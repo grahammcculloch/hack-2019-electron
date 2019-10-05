@@ -10,12 +10,16 @@ class Store {
   @observable 
   backgroundFile = '';
 
+  @observable 
+  outputFile = '';
+
   @computed
   get stepStatus() {
     return [
       !!this.hearThisFolder,
       // !!this.timingFile,
       !!this.backgroundFile,
+      !!this.outputFile,
     ];
   }
 
@@ -35,9 +39,14 @@ class Store {
     this.backgroundFile = file;
   }
 
+  @action.bound
+  setOutputFile(file) {
+    this.outputFile = file;
+  }
+
   @computed
   get allValidInputs() {
-    return this.hearThisFolder && /* this.timingFile && */ this.backgroundFile;
+    return this.hearThisFolder && /* this.timingFile && */ this.backgroundFile && this.outputFile;
   }
 }
 

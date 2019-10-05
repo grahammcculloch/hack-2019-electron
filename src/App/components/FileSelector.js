@@ -4,11 +4,17 @@ import './FileSelector.scss';
 const { remote } = window.require('electron');
 const { dialog } = remote;
 
-const FileSelector = ({ file, label, help, options, onFileSelected }) => {
+const FileSelector = ({
+  save = false,
+  file,
+  label,
+  options,
+  onFileSelected,
+}) => {
   const selectFile = async () => {
-    const result = await dialog.showOpenDialog(options);
-    const filePaths = result.filePaths;
-    const file = filePaths && filePaths.length === 1 ? filePaths[0] : '';
+    const show = save ? dialog.showSaveDialog : dialog.showOpenDialog;
+    const result = await show(options);
+    const file = result.filePath || (result.filePaths && result.filePaths.length === 1 ? result.filePaths[0] : '');
     if (file) {
       onFileSelected(file);
     }

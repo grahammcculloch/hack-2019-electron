@@ -5,24 +5,25 @@ import { fileFilters } from '../../constants';
 
 @inject('store')
 @observer
-class TimingCard extends React.PureComponent {
+class OutputCard extends React.PureComponent {
   render() {
     const {
-      store: { timingFile, setTimingFile },
+      store: { outputFile, setOutputFile },
     } = this.props;
     return (
       <FileSelector
-        file={timingFile}
-        label='Timing file'
+        save
+        file={outputFile}
+        label='Output file'
         options={{
-          title: 'Select Timing File',
-          filters: fileFilters.timing,
+          title: 'Save video file as',
+          filters: fileFilters.output,
           properties: ['openFile'],
         }}
-        onFileSelected={setTimingFile}
+        onFileSelected={setOutputFile}
       />
     );
   }
 }
 
-export default TimingCard;
+export default OutputCard;

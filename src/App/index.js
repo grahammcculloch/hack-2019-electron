@@ -6,9 +6,16 @@ import {
   TextAndAudioCard,
   // TimingCard,
   BackgroundCard,
+  OutputCard,
 } from './components/cards';
 import './index.scss';
 const { ipcRenderer } = window.require('electron');
+
+const AppStatus = {
+  configuring: 'configuring',
+  processing: 'processing',
+  done: 'done',
+};
 
 @inject('store')
 @observer
@@ -16,18 +23,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      processing: false,
-      rendering: false,
-      outputFile: '',
-      renderFile: '',
+      status: AppStatus.configuring,
     };
     ipcRenderer.on('did-finish-conversion', (event, args) => {
       console.log('Received result', args);
-      this.setState({ processing: false, outputFile: args.outputFile });
-    });
-    ipcRenderer.on('did-finish-render', (event, args) => {
-      console.log('Received result', args);
-      this.setState({ rendering: false, renderFile: args.outputFile });
+      this.setState({ status: AppStatus.done });
     });
 
     this.cards = [
@@ -47,40 +47,38 @@ class App extends Component {
       {
         title: 'Background',
         description:
-          'Finally, select a background image or video that will be used as the background of the generated video',
+          'Then select a background image or video that will be used as the background of the generated video',
         content: <BackgroundCard />,
+      },
+      {
+        title: 'Output',
+        description: "Finally, select where you'll save the generated video",
+        content: <OutputCard />,
       },
     ];
   }
 
+  openOutputFolder = () => {
+    const { outputFile } = this.props.store;
+    ipcRenderer.send('open-output-folder', outputFile);
+    this.setState({ status: AppStatus.configuring });
+  };
+
   onStart = () => {
-    this.setState({ processing: true }, () => {
-      const { hearThisFolder, timingFile, backgroundFile } = this.props.store;
+    this.setState({ status: AppStatus.processing }, () => {
+      const { hearThisFolder, backgroundFile, outputFile } = this.props.store;
       const args = {
         hearThisFolder,
-        timingFile,
         backgroundFile,
+        outputFile,
       };
       console.log('Requesting processing', args);
       ipcRenderer.send('did-start-conversion', args);
     });
   };
 
-  onRender = () => {
-    this.setState({ rendering: true }, () => {
-      const { hearThisFolder, timingFile, backgroundFile } = this.props.store;
-      const args = {
-        hearThisFolder,
-        timingFile,
-        backgroundFile,
-      };
-      console.log('Requesting render', args);
-      ipcRenderer.send('did-start-render', args);
-    });
-  };
-
   render() {
-    const { processing } = this.state;
+    const { status } = this.state;
     const {
       store: { allValidInputs },
     } = this.props;
@@ -90,14 +88,23 @@ class App extends Component {
           <H1>Bible Karaoke</H1>
           <Accordion cards={this.cards} />
           <div className='app__footer'>
-            <Button
-              large
-              intent={Intent.PRIMARY}
-              loading={processing}
-              disabled={!allValidInputs}
-              text='Make my video!'
-              onClick={this.onStart}
-            />
+            {status === AppStatus.done ? (
+              <Button
+                large
+                intent={Intent.PRIMARY}
+                text='Open output folder'
+                onClick={this.openOutputFolder}
+              />
+            ) : (
+              <Button
+                large
+                intent={Intent.PRIMARY}
+                loading={status === AppStatus.processing}
+                disabled={!allValidInputs}
+                text='Make my video!'
+                onClick={this.onStart}
+              />
+            )}
           </div>
         </div>
       </div>
