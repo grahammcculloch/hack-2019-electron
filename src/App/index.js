@@ -32,22 +32,22 @@ class App extends Component {
 
     this.cards = [
       {
-        title: '1. Text and Audio',
+        title: 'Text and Audio',
         description:
-          'This first step is where you provide the info.xml file from HereThis for the chapter you want.' +
-          ' Then select the audio files that are in that chapter.',
+          'This first step is where you select the HereThis project, book and chapter.' +
+          ' This folder should contain the text and audio files that will be used in the video.',
         content: <TextAndAudioCard />,
       },
       {
-        title: '2. Timing',
+        title: 'Timing',
         description:
-          'This is the VTT file that will be used to display the text on the screen.',
+          'Now select the VTT file that will be used to display the text on the screen.',
         content: <TimingCard />,
       },
       {
-        title: '3. Background',
+        title: 'Background',
         description:
-          'This is the background that will display when the video is playing',
+          'Finally, select a background image or video that will be used as the background of the generated video',
         content: <BackgroundCard />,
       },
     ];
@@ -95,7 +95,7 @@ class App extends Component {
               intent={Intent.PRIMARY}
               loading={processing}
               disabled={!allValidInputs}
-              text='Start'
+              text='Make my video!'
               onClick={this.onStart}
             />
           </div>

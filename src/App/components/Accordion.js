@@ -37,7 +37,7 @@ class Accordion extends React.PureComponent {
                     this.selectCard(index);
                   }}
                 >
-                  {card.title}
+                  {`${index + 1}. ${card.title}`}
                 </a>
               </H3>
               { stepStatus[index] ? <Icon icon="tick-circle" /> : null }
