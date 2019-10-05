@@ -1,6 +1,4 @@
 const { spawn } = require('child_process');
-
-const fs  = require('fs');
 const puppeteer = require('puppeteer');
 
 module.exports.record = async function(options) {

@@ -1,9 +1,9 @@
 const util = require('util');
 const path = require('path');
-const process = require('process');
-const ffbinaries = require('ffbinaries');
 const bbkFfmpeg = require('bbk/lib/commands/ffmpeg').run;
 const exec = util.promisify(require('child_process').exec);
+const {setupFfmpeg} = require('../ffmpeg');
+
 
 module.exports = {
     renderToVideo
@@ -23,13 +23,3 @@ async function renderToVideo(imagesFolder, audioFolder, outputFile) {
     // console.log(stdout);
 }
 
-async function setupFfmpeg() {
-    let dest = path.join(process.cwd(), 'binaries');
-    await new Promise(function setupCallback(accept, reject) {
-        ffbinaries.downloadBinaries(['ffmpeg', 'ffprobe'], {quiet: true, destination: dest}, function () {
-            console.log('Downloaded ffmpeg binaries to ' + dest + '.');
-            accept();
-          });
-    });
-    return dest;
-}
