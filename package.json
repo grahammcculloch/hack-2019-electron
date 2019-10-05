@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "electron": "^1.7.9",
-    "foreman": "^2.0.0"
+    "electron": "^6.0.11",
+    "foreman": "^3.0.1"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.18.1",
