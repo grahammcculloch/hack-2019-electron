@@ -1,18 +1,21 @@
 import React from 'react';
 import { ButtonGroup, Button, Intent } from '@blueprintjs/core';
+import { Select } from '@blueprintjs/select';
 import FileSelector from '../FileSelector';
 import { fileFilters } from '../../constants';
+import { getProjectStructure } from '../../../here-this';
 
 class TextAndAudioCard extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       useHearThis: false,
+      hereThisProjects: []
     };
   }
 
   selectHearThis = () => {
-    this.setState({ useHearThis: true });
+    this.setState({ useHearThis: true, hereThisProjects: getProjectStructure() });
   };
 
   selectManualSelection = () => {
@@ -20,8 +23,9 @@ class TextAndAudioCard extends React.PureComponent {
   };
 
   render() {
-    const { useHearThis } = this.state;
+    const { useHearThis, hereThisProjects } = this.state;
     const { onSelectTextFile, onSelectAudioFile } = this.props;
+    
     return (
       <React.Fragment>
         <ButtonGroup>
@@ -39,7 +43,7 @@ class TextAndAudioCard extends React.PureComponent {
           </Button>
         </ButtonGroup>
         {useHearThis ? (
-          <div>HearThis</div>
+          <div>here this</div>
         ) : (
           <div>
             <FileSelector

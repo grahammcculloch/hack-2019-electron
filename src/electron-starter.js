@@ -1,4 +1,7 @@
 const electron = require('electron');
+const getVtt = require('./vtt/vtt');
+const renderFrames = require('./rendering/render-frames');
+const renderVideo = require('./rendering/render-video');
 // Module to control application life.
 const { app, ipcMain } = electron;
 // Module to create native browser window.
@@ -44,11 +47,15 @@ function createWindow() {
 function handleSubmission() {
   ipcMain.on('did-start-conversion', (event, args) => {
     console.log('Starting command line', args);
-    setTimeout(() => {
-      const retArgs = { outputFile: 'output.webm' };
-      console.log('Command line process finished', retArgs);
-      event.sender.send('did-finish-conversion', retArgs);
-    }, 2000);
+    const { textFile, audioFile, timingFile, backgroundFile } = args;
+    let vttFilePath = await getVtt([audioFile], timingFile);
+    let outputFolder = await renderFrames(vttFilePath, backgroundFile);
+    let audioFolder = '';
+    let videoPath = await renderVideo(outputFolder, audioFolder, 'video.mp4');
+
+    const retArgs = { outputFile: videoPath };
+    console.log('Command line process finished', retArgs);
+    event.sender.send('did-finish-conversion', retArgs);
   });
   ipcMain.on('did-start-render', (event, args) => {
     console.log('Starting command line', args);

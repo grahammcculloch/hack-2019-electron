@@ -1,6 +1,7 @@
-const { record } = require('./record');
+const { record } = require('./record-frames');
 const fs  = require('fs');
-const ffbinaries = require('ffbinaries');
+const path = require('path');
+const process = require('process');
 const vttToJson = require('vtt-json');
 const DataURI = require('datauri').promise;
 
@@ -18,12 +19,13 @@ async function render(vttFilePath, bgImagePath) {
     let htmlContent = await getHtmlPage(vttFilePath, bgImagePath, fps);
     // fs.writeFileSync('test.html', htmlContent);
     // return;
+    let outputLocation = 'output';
     await record({
         browser: null, // Optional: a puppeteer Browser instance,
         page: null, // Optional: a puppeteer Page instance,
         // ffmpeg: ffmpegLocation,
         logEachFrame: true,
-        output: 'output',
+        output: outputLocation,
         fps,
         frames: fps * 5, // 5 seconds at 60 fps
         prepare: async function (browser, page) {
@@ -33,6 +35,7 @@ async function render(vttFilePath, bgImagePath) {
             await page.evaluate(() => renderNextFrame());
         }
     });
+    return path.join(process.cwd(), outputLocation);
 }
 
 async function getHtmlPage(vttFilePath, bgImagePath, fps) {
@@ -50,15 +53,4 @@ async function getHtmlPage(vttFilePath, bgImagePath, fps) {
         }
     </script>
     `);
-}
-
-async function setupFfmpeg() {
-    let dest = __dirname + '/binaries';
-    await new Promise(function setupCallback(accept, reject) {
-        ffbinaries.downloadBinaries(['ffmpeg', 'ffprobe'], {quiet: true, destination: dest}, function () {
-            console.log('Downloaded ffmpeg binaries to ' + dest + '.');
-            accept();
-          });
-    });
-    return dest;
 }

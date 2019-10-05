@@ -37,6 +37,7 @@ class Accordion extends React.PureComponent {
                 {card.title}
               </a>
             </H3>
+            <p>{card.description}</p>
             <Collapse isOpen={index === currentCardIndex}>
               {card.content}
               <div className='accordion__card-footer'>

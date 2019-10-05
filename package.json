@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^3.18.1",
+    "@blueprintjs/select": "^3.10.0",
+    "bbk": "github:Hiro-Nakamura/bible-karaoke-cli",
     "datauri": "^2.0.0",
     "ffbinaries": "^1.1.4",
     "fluent-ffmpeg": "^2.1.2",

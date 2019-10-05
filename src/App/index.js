@@ -34,6 +34,8 @@ class App extends Component {
     this.cards = [
       {
         title: 'Text and Audio',
+        description: 'This first step is where you provide the info.xml file from HereThis for the chapter you want.'
+        + ' Then select the audio files that are in that chapter.',
         content: (
           <TextAndAudioCard
             onSelectTextFile={this.selectTextFile}
@@ -43,10 +45,12 @@ class App extends Component {
       },
       {
         title: 'Timing',
+        description: 'This is the VTT file that will be used to display the text on the screen.',
         content: <TimingCard onSelectTimingFile={this.selectTimingFile} />,
       },
       {
         title: 'Background',
+        description: 'This is the background that will display when the video is playing',
         content: (
           <BackgroundCard onSelectBackgroundFile={this.selectBackgroundFile} />
         ),
