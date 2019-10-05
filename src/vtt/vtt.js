@@ -8,7 +8,8 @@ module.exports = {
 };
 
 const TMP = '/home/hahnkev/hereThisProject/ENT/Mark/1';
-const VTT_BINARY_PATH = path.join(process.cwd(), 'binaries', process.platform == 'win32' ? 'convertHereThis' : 'convertHereThis.exe');
+const VTT_BINARY = process.platform == 'win32' ? 'convertHereThis.exe' : 'convertHereThis';
+const VTT_BINARY_PATH = path.join(process.cwd(), 'binaries', VTT_BINARY);
 async function getVtt(chapterPath) {
     let outputFileName = 'tmp.vtt';
     let ffmpegPath = path.join(await setupFfmpeg(), 'ffmpeg');
@@ -21,7 +22,3 @@ async function getVtt(chapterPath) {
     
     return outputFileName;
 }
-
-(function () {
-    getVtt('', TMP);
-})();

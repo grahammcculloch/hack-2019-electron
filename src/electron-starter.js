@@ -1,7 +1,5 @@
 const electron = require('electron');
-const getVtt = require('./vtt/vtt');
-const renderFrames = require('./rendering/render-frames');
-const renderVideo = require('./rendering/render-video');
+const karaoke = require('./karaoke');
 const { getProjectStructure } = require('./here-this');
 // Module to control application life.
 const { app, ipcMain } = electron;
@@ -58,10 +56,9 @@ function handleSubmission() {
   ipcMain.on('did-start-conversion', async (event, args) => {
     console.log('Starting command line', args);
     const { textFile, audioFile, timingFile, backgroundFile } = args;
-    let vttFilePath = await getVtt([audioFile], timingFile);
-    let outputFolder = await renderFrames(vttFilePath, backgroundFile);
-    let audioFolder = '';
-    let videoPath = await renderVideo(outputFolder, audioFolder, 'video.mp4');
+    //todo get parameters
+    let hereThisFolder;
+    let videoPath = karaoke.execute(backgroundFile);
 
     const retArgs = { outputFile: videoPath };
     console.log('Command line process finished', retArgs);

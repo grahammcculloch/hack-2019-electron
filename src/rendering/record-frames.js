@@ -19,8 +19,8 @@ module.exports.record = async function(options) {
       );
 
     await options.render(browser, page, i);
-
-    let screenshot = await page.screenshot({ omitBackground: false, path: outLocation + '/' + 'frame_' + i + '.png' });
+    let fileName = 'frame_' + i + '.png';
+    let screenshot = await page.screenshot({ omitBackground: false, path: outLocation + '/' + fileName});
   }
   await browser.close();
 //   ffmpeg.stdin.end();

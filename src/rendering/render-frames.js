@@ -5,13 +5,7 @@ const process = require('process');
 const vttToJson = require('vtt-json');
 const DataURI = require('datauri').promise;
 
-(async function mainIIFE() {
-    try {
-        await render('./sample.vtt', './bunny.jpeg');
-    } catch (error) {
-        console.error(error);
-    }
-})();
+module.exports = {render};
 
 async function render(vttFilePath, bgImagePath) {
     let fps = 30;
@@ -19,7 +13,8 @@ async function render(vttFilePath, bgImagePath) {
     let htmlContent = await getHtmlPage(vttFilePath, bgImagePath, fps);
     // fs.writeFileSync('test.html', htmlContent);
     // return;
-    let outputLocation = 'output';
+    let outputLocation = fs.mkdtempSync('kar');
+    
     await record({
         browser: null, // Optional: a puppeteer Browser instance,
         page: null, // Optional: a puppeteer Page instance,
@@ -35,11 +30,11 @@ async function render(vttFilePath, bgImagePath) {
             await page.evaluate(() => renderNextFrame());
         }
     });
-    return path.join(process.cwd(), outputLocation);
+    return outputLocation;
 }
 
 async function getHtmlPage(vttFilePath, bgImagePath, fps) {
-    let htmlContent = fs.readFileSync('./render.html', {encoding: 'utf-8'});
+    let htmlContent = fs.readFileSync('./src/rendering/render.html', {encoding: 'utf-8'});
     let vttContent = fs.readFileSync(vttFilePath, {encoding: 'utf-8'});
     let vttJson = await vttToJson(vttContent);
     let backgroundDataUri = await DataURI(bgImagePath);
