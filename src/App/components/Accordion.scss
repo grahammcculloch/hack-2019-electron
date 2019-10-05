@@ -1,0 +1,16 @@
+@import "~@blueprintjs/core/src/common/_colors.scss";
+
+.accordion {
+  background-color: $dark-gray3;
+  padding: 20px;
+  &__card {
+    margin: 20px;
+  }
+  &__card-footer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+}
