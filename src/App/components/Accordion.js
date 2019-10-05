@@ -1,7 +1,10 @@
 import React from 'react';
-import { Card, Button, H3, Elevation, Intent, Collapse } from '@blueprintjs/core';
+import { inject, observer } from 'mobx-react';
+import { Card, Button, H3, Elevation, Icon, Intent, Collapse } from '@blueprintjs/core';
 import './Accordion.scss';
 
+@inject('store')
+@observer
 class Accordion extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -21,32 +24,36 @@ class Accordion extends React.PureComponent {
   };
 
   render() {
-    const { cards } = this.props;
+    const { cards, store: { stepStatus } } = this.props;
     const { currentCardIndex } = this.state;
     return (
       <div className="accordion">
         {cards.map((card, index) => (
-          <Card className="accordion__card" elevation={Elevation.TWO}>
-            <H3>
-              <a
-                onClick={() => {
-                  this.selectCard(index);
-                }}
-              >
-                {card.title}
-              </a>
-            </H3>
+          <Card key={index} className="accordion__card" elevation={Elevation.TWO}>
+            <div className="accordion__card-title">
+              <H3>
+                <a
+                  onClick={() => {
+                    this.selectCard(index);
+                  }}
+                >
+                  {card.title}
+                </a>
+              </H3>
+              { stepStatus[index] ? <Icon icon="tick-circle" /> : null }
+            </div>
             <Collapse isOpen={index === currentCardIndex}>
               <p>{card.description}</p>
               {card.content}
               <div className='accordion__card-footer'>
                 <Button
+                  disabled={!stepStatus[index]}
                   intent={Intent.PRIMARY}
                   onClick={() => {
                     this.onNext(index);
                   }}
                 >
-                  Next
+                  { index === (cards.length - 1) ? 'Done' : 'Next' }
                 </Button>
               </div>
             </Collapse>

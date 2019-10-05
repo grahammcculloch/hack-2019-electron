@@ -14,6 +14,8 @@ const url = require('url');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+let hearThisProjects;
+
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -47,17 +49,16 @@ function createWindow() {
 function handleGetProjects() {
   ipcMain.on('did-start-getprojectstructure', async (event) => {
     console.log('Getting project structure');
-    const projects = getProjectStructure();
-    event.sender.send('did-finish-getprojectstructure', projects);
+    hearThisProjects = getProjectStructure();
+    event.sender.send('did-finish-getprojectstructure', hearThisProjects);
   });
 }
 
 function handleSubmission() {
   ipcMain.on('did-start-conversion', async (event, args) => {
     console.log('Starting command line', args);
-    const { textFile, audioFile, timingFile, backgroundFile } = args;
+    const { hearThisChapterFolder, timingFile, backgroundFile } = args;
     //todo get parameters
-    let hereThisFolder;
     let videoPath = karaoke.execute(backgroundFile);
 
     const retArgs = { outputFile: videoPath };

@@ -1,18 +1,24 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
 import FileSelector from '../FileSelector';
 import { fileFilters } from '../../constants';
 
+@inject('store')
+@observer
 class TimingCard extends React.PureComponent {
   render() {
-    const { onSelectTimingFile } = this.props;
+    const {
+      store: { timingFile, setTimingFile },
+    } = this.props;
     return (
       <FileSelector
+        file={timingFile}
         label='Timing file'
         options={{
           filters: fileFilters.timing,
           properties: ['openFile'],
         }}
-        onFileSelected={onSelectTimingFile}
+        onFileSelected={setTimingFile}
       />
     );
   }

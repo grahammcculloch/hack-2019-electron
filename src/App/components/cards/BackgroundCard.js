@@ -1,18 +1,24 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
 import FileSelector from '../FileSelector';
 import { fileFilters } from '../../constants';
 
+@inject('store')
+@observer
 class BackgroundCard extends React.PureComponent {
   render() {
-    const { onSelectBackgroundFile } = this.props;
+    const {
+      store: { backgroundFile, setBackgroundFile },
+    } = this.props;
     return (
       <FileSelector
+        file={backgroundFile}
         label='Background file'
         options={{
           filters: fileFilters.background,
           properties: ['openFile'],
         }}
-        onFileSelected={onSelectBackgroundFile}
+        onFileSelected={setBackgroundFile}
       />
     );
   }

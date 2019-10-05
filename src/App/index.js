@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
 import { Button, Intent, H1 } from '@blueprintjs/core';
 import Accordion from './components/Accordion';
 import {
@@ -9,15 +10,14 @@ import {
 import './index.scss';
 const { ipcRenderer } = window.require('electron');
 
+@inject('store')
+@observer
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       processing: false,
       rendering: false,
-      hearThisFolder: '',
-      timingFile: '',
-      backgroundFile: '',
       outputFile: '',
       renderFile: '',
     };
@@ -33,44 +33,29 @@ class App extends Component {
     this.cards = [
       {
         title: '1. Text and Audio',
-        description: 'This first step is where you provide the info.xml file from HereThis for the chapter you want.'
-        + ' Then select the audio files that are in that chapter.',
-        content: (
-          <TextAndAudioCard
-            onSelectFolder={this.hearThisFolder}
-          />
-        ),
+        description:
+          'This first step is where you provide the info.xml file from HereThis for the chapter you want.' +
+          ' Then select the audio files that are in that chapter.',
+        content: <TextAndAudioCard />,
       },
       {
         title: '2. Timing',
-        description: 'This is the VTT file that will be used to display the text on the screen.',
-        content: <TimingCard onSelectTimingFile={this.selectTimingFile} />,
+        description:
+          'This is the VTT file that will be used to display the text on the screen.',
+        content: <TimingCard />,
       },
       {
         title: '3. Background',
-        description: 'This is the background that will display when the video is playing',
-        content: (
-          <BackgroundCard onSelectBackgroundFile={this.selectBackgroundFile} />
-        ),
+        description:
+          'This is the background that will display when the video is playing',
+        content: <BackgroundCard />,
       },
     ];
   }
 
-  selectHearThisFolder = hearThisFolder => {
-    this.setState({ hearThisFolder });
-  };
-
-  selectTimingFile = timingFile => {
-    this.setState({ timingFile });
-  };
-
-  selectBackgroundFile = backgroundFile => {
-    this.setState({ backgroundFile });
-  };
-
   onStart = () => {
     this.setState({ processing: true }, () => {
-      const { hearThisFolder, timingFile, backgroundFile } = this.state;
+      const { hearThisFolder, timingFile, backgroundFile } = this.props.store;
       const args = {
         hearThisFolder,
         timingFile,
@@ -83,7 +68,7 @@ class App extends Component {
 
   onRender = () => {
     this.setState({ rendering: true }, () => {
-      const { hearThisFolder, timingFile, backgroundFile } = this.state;
+      const { hearThisFolder, timingFile, backgroundFile } = this.props.store;
       const args = {
         hearThisFolder,
         timingFile,
@@ -95,16 +80,10 @@ class App extends Component {
   };
 
   render() {
+    const { processing } = this.state;
     const {
-      processing,
-      rendering,
-      hearThisFolder,
-      timingFile,
-      backgroundFile,
-      outputFile,
-      renderFile,
-    } = this.state;
-    const validInputs = hearThisFolder && timingFile && backgroundFile;
+      store: { allValidInputs },
+    } = this.props;
     return (
       <div className='app bp3-dark'>
         <div className='app__container'>
@@ -115,22 +94,11 @@ class App extends Component {
               large
               intent={Intent.PRIMARY}
               loading={processing}
-              disabled={!validInputs}
+              disabled={!allValidInputs}
               text='Start'
               onClick={this.onStart}
             />
           </div>
-          <span>{outputFile}</span>
-          <div className='app__footer'>
-            <Button
-              large
-              intent={Intent.PRIMARY}
-              loading={processing}
-              text='Start'
-              onClick={this.onRender}
-            />
-          </div>
-          <span>{renderFile}</span>
         </div>
       </div>
     );

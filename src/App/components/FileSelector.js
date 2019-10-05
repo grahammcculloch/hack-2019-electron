@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { Button } from '@blueprintjs/core';
 import './FileSelector.scss';
 const { remote } = window.require('electron');
 const { dialog } = remote;
 
-const FileSelector = ({ label, help, options, onFileSelected }) => {
-  const [ fileName, setFileName ] = useState('');
+const FileSelector = ({ file, label, help, options, onFileSelected }) => {
   const selectFile = async () => {
     const result = await dialog.showOpenDialog(options);
     const filePaths = result.filePaths;
     const file = filePaths && filePaths.length === 1 ? filePaths[0] : '';
     if (file) {
-      setFileName(file);
       onFileSelected(file);
     }
   };
@@ -21,7 +18,7 @@ const FileSelector = ({ label, help, options, onFileSelected }) => {
       <div className="file-selector__label">{label}</div>
       <Button text="Select" onClick={selectFile} />
       <div className="file-selector__filename">
-        {fileName}
+        {file}
       </div>
     </div>
   );

@@ -6,6 +6,11 @@
   &__card {
     margin: 20px;
   }
+  &__card-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   &__card-footer {
     margin-top: 10px;
     display: flex;
