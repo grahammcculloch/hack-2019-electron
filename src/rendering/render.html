@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Karioki</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        let timeElement;
+        function getTimeElement() {
+            if (!timeElement) timeElement = document.getElementById("time");
+            return timeElement;
+        }
+        // setInterval(() => {
+        //     let currentTime = new Date();
+        //     getTimeElement().innerText = currentTime.toJSON();
+        // }, 1);
+        function setTimeElement(text) {
+            getTimeElement().innerText = text;
+        }
+        var currentIndex = 1;
+        window.onload = function () {
+            setTimeElement(currentIndex);
+        }
+        function next() {
+            currentIndex++;
+            setTimeElement(currentIndex);
+        }
+    </script>
+    <script>
+        window.afterLoadKar = function(vttRaw, backgroundImage, fps) {
+            console.log('vtt: ', vttRaw);
+            let image = document.createElement("img");
+            let imageParent = document.getElementById("imgParent");
+            image.id = "imgId";
+            image.src = backgroundImage;            // image.src = "IMAGE URL/PATH"
+            imageParent.appendChild(image);
+        }
+        function renderNextFrame() {
+            next();
+        }
+    </script>
+    <!-- this comment get's replaced with content that has the background image
+    and vtt file. It then calls `afterLoadKar` with the loaded values -->
+    <!-- replaced-HACK -->
+    <meta name="data-replace">
+</head>
+<body>
+    <p>hello world time: <span id="time"></span></p>
+    <div style="height: 100px; width: 100px; background-color: red"></div>
+    <div id="imgParent"></div>
+</body>
+</html>
