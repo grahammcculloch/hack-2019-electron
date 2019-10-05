@@ -2,6 +2,7 @@ const electron = require('electron');
 const getVtt = require('./vtt/vtt');
 const renderFrames = require('./rendering/render-frames');
 const renderVideo = require('./rendering/render-video');
+const { getProjectStructure } = require('./here-this');
 // Module to control application life.
 const { app, ipcMain } = electron;
 // Module to create native browser window.
@@ -44,8 +45,17 @@ function createWindow() {
   });
 }
 
+
+function handleGetProjects() {
+  ipcMain.on('did-start-getprojectstructure', async (event) => {
+    console.log('Getting project structure');
+    const projects = getProjectStructure();
+    event.sender.send('did-finish-getprojectstructure', projects);
+  });
+}
+
 function handleSubmission() {
-  ipcMain.on('did-start-conversion', (event, args) => {
+  ipcMain.on('did-start-conversion', async (event, args) => {
     console.log('Starting command line', args);
     const { textFile, audioFile, timingFile, backgroundFile } = args;
     let vttFilePath = await getVtt([audioFile], timingFile);
@@ -82,6 +92,7 @@ function handleSubmission() {
 app.on('ready', () => {
   createWindow();
   handleSubmission();
+  handleGetProjects();
 });
 
 // Quit when all windows are closed.

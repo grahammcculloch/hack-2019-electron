@@ -8,9 +8,9 @@ const exec = util.promisify(require('child_process').exec);
 module.exports = {
     renderToVideo
 };
-(function (params) {
-    renderToVideo('./output', 'audio', 'video.mp4');
-})();
+// (function (params) {
+//     renderToVideo('./output', 'audio', 'video.mp4');
+// })();
 async function renderToVideo(imagesFolder, audioFolder, outputFile) {
     let ffmpegFolder = await setupFfmpeg();
     let ffmpegPath = path.join(ffmpegFolder, 'ffmpeg');

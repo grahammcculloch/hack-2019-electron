@@ -16,3 +16,6 @@ npm-debug.log
 
 .idea
 src/rendering/output/**
+
+binaries/ffmpeg.exe
+binaries/ffprobe.exe

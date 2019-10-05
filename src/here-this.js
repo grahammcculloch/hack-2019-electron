@@ -31,16 +31,20 @@ const DEFAULT_XML_NAME = 'info.xml';
 const DEFAULT_DATA_DIR = 'C:/ProgramData/SIL/HearThis/';
 //const DEFAULT_DATA_DIR = '/home/hahnkev/hereThisProjects/';
 function getProjectStructure() {
-    let projectNames = fs.readdirSync(DEFAULT_DATA_DIR);
-    let projects = projectNames.map(name => makeProject(name));
+    try {
+        let projectNames = fs.readdirSync(DEFAULT_DATA_DIR);
+        let projects = projectNames.map(name => makeProject(name));
 
-    return projects;
+        return projects;
+    } catch {
+        return [];
+    }
 }
 
 function makeProject(name) {
     let project = new Project();
     project.name = name;
-    bookNames = fs.readdirSync(path.join(DEFAULT_DATA_DIR, name)).filter(folderName => !folderName.endsWith('.xml'));
+    const bookNames = fs.readdirSync(path.join(DEFAULT_DATA_DIR, name)).filter(folderName => !folderName.endsWith('.xml'));
     project.books = bookNames.map(bookName => makeBook(name, bookName))
         .filter(book => book.chapters.length);
     return project;

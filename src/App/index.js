@@ -15,8 +15,7 @@ class App extends Component {
     this.state = {
       processing: false,
       rendering: false,
-      textFile: '',
-      audioFile: '',
+      hearThisFolder: '',
       timingFile: '',
       backgroundFile: '',
       outputFile: '',
@@ -33,23 +32,22 @@ class App extends Component {
 
     this.cards = [
       {
-        title: 'Text and Audio',
+        title: '1. Text and Audio',
         description: 'This first step is where you provide the info.xml file from HereThis for the chapter you want.'
         + ' Then select the audio files that are in that chapter.',
         content: (
           <TextAndAudioCard
-            onSelectTextFile={this.selectTextFile}
-            onSelectAudioFile={this.selectAudioFile}
+            onSelectFolder={this.hearThisFolder}
           />
         ),
       },
       {
-        title: 'Timing',
+        title: '2. Timing',
         description: 'This is the VTT file that will be used to display the text on the screen.',
         content: <TimingCard onSelectTimingFile={this.selectTimingFile} />,
       },
       {
-        title: 'Background',
+        title: '3. Background',
         description: 'This is the background that will display when the video is playing',
         content: (
           <BackgroundCard onSelectBackgroundFile={this.selectBackgroundFile} />
@@ -58,12 +56,8 @@ class App extends Component {
     ];
   }
 
-  selectTextFile = textFile => {
-    this.setState({ textFile });
-  };
-
-  selectAudioFile = audioFile => {
-    this.setState({ audioFile });
+  selectHearThisFolder = hearThisFolder => {
+    this.setState({ hearThisFolder });
   };
 
   selectTimingFile = timingFile => {
@@ -76,10 +70,9 @@ class App extends Component {
 
   onStart = () => {
     this.setState({ processing: true }, () => {
-      const { textFile, audioFile, timingFile, backgroundFile } = this.state;
+      const { hearThisFolder, timingFile, backgroundFile } = this.state;
       const args = {
-        textFile,
-        audioFile,
+        hearThisFolder,
         timingFile,
         backgroundFile,
       };
@@ -90,10 +83,9 @@ class App extends Component {
 
   onRender = () => {
     this.setState({ rendering: true }, () => {
-      const { textFile, audioFile, timingFile, backgroundFile } = this.state;
+      const { hearThisFolder, timingFile, backgroundFile } = this.state;
       const args = {
-        textFile,
-        audioFile,
+        hearThisFolder,
         timingFile,
         backgroundFile,
       };
@@ -106,14 +98,13 @@ class App extends Component {
     const {
       processing,
       rendering,
-      textFile,
-      audioFile,
+      hearThisFolder,
       timingFile,
       backgroundFile,
       outputFile,
       renderFile,
     } = this.state;
-    const validInputs = textFile && audioFile && timingFile && backgroundFile;
+    const validInputs = hearThisFolder && timingFile && backgroundFile;
     return (
       <div className='app bp3-dark'>
         <div className='app__container'>

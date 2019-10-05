@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Card, Button, H3, Elevation, Intent, Collapse } from '@blueprintjs/core';
 import './Accordion.scss';
 
@@ -37,8 +36,8 @@ class Accordion extends React.PureComponent {
                 {card.title}
               </a>
             </H3>
-            <p>{card.description}</p>
             <Collapse isOpen={index === currentCardIndex}>
+              <p>{card.description}</p>
               {card.content}
               <div className='accordion__card-footer'>
                 <Button
