@@ -1,0 +1,134 @@
+[
+    {
+        "type": "caption",
+        "index": 1,
+        "start": 500,
+        "end": 6000,
+        "duration": 5500,
+        "content": ">> ALICE: Hi, my name is Alice Miller and this is John Brown",
+        "text": "Hi, my name is Alice Miller and this is John Brown",
+        "words": [
+            {
+                "word": "Hi,",
+                "start": 500,
+                "end": 1000
+            },
+            {
+                "word": "my",
+                "start": 1000,
+                "end": 1500
+            },
+            {
+                "word": "name",
+                "start": 1500,
+                "end": 2000
+            },
+            {
+                "word": "is",
+                "start": 2000,
+                "end": 2500
+            },
+            {
+                "word": "Alice",
+                "start": 2500,
+                "end": 3000
+            },
+            {
+                "word": "Miller",
+                "start": 3000,
+                "end": 3500
+            },
+            {
+                "word": "and",
+                "start": 3500,
+                "end": 4000
+            },
+            {
+                "word": "this",
+                "start": 4000,
+                "end": 4500
+            },
+            {
+                "word": "is",
+                "start": 4500,
+                "end": 5000
+            },
+            {
+                "word": "John",
+                "start": 5000,
+                "end": 5500
+            },
+            {
+                "word": "Brown",
+                "start": 5500,
+                "end": 6000
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 1,
+        "start": 6000,
+        "end": 11500,
+        "duration": 5500,
+        "content": ">> ALICE: Hi, my name is Alice Miller and this is John Brown",
+        "text": "Hi, my name is Alice Miller and this is John Brown",
+        "words": [
+            {
+                "word": "Hi,",
+                "start": 6000,
+                "end": 6500
+            },
+            {
+                "word": "my",
+                "start": 6500,
+                "end": 7000
+            },
+            {
+                "word": "name",
+                "start": 7000,
+                "end": 7500
+            },
+            {
+                "word": "is",
+                "start": 7500,
+                "end": 8000
+            },
+            {
+                "word": "Alice",
+                "start": 8000,
+                "end": 8500
+            },
+            {
+                "word": "Miller",
+                "start": 8500,
+                "end": 9000
+            },
+            {
+                "word": "and",
+                "start": 9000,
+                "end": 9500
+            },
+            {
+                "word": "this",
+                "start": 9500,
+                "end": 10000
+            },
+            {
+                "word": "is",
+                "start": 10000,
+                "end": 10500
+            },
+            {
+                "word": "John",
+                "start": 10500,
+                "end": 11000
+            },
+            {
+                "word": "Brown",
+                "start": 11000,
+                "end": 11500
+            }
+        ]
+    }
+]
