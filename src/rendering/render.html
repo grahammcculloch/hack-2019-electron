@@ -203,8 +203,14 @@
             createSubtitle(textObj);
 
         }
+        var curPos = 0;
         function renderNextFrame() {
-            next();
+            curPos = 1000/fps + curPos;
+            console.log('position ', curPos);
+            // This is how you tell it to go to a specific time
+            animations.forEach((w) => {
+                w.currentTime = curPos;
+            });
         }
     </script>
     <!-- this comment get's replaced with content that has the background image

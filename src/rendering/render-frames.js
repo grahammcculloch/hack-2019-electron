@@ -7,12 +7,21 @@ const DataURI = require('datauri').promise;
 
 module.exports = {render};
 
+(async function mainIIFE() {
+    try {
+        await render('./src/rendering/lrc.json', './src/rendering/bunny.jpeg');
+    } catch (error) {
+        console.error(error);
+    }
+})();
+
+
 async function render(vttFilePath, bgImagePath) {
     let fps = 30;
     // let ffmpegLocation = await setupFfmpeg();
     let htmlContent = await getHtmlPage(vttFilePath, bgImagePath, fps);
-    // fs.writeFileSync('test.html', htmlContent);
-    // return;
+    fs.writeFileSync('test.html', htmlContent);
+    return;
     let outputLocation = fs.mkdtempSync('kar');
     
     await record({
@@ -36,12 +45,12 @@ async function render(vttFilePath, bgImagePath) {
 async function getHtmlPage(vttFilePath, bgImagePath, fps) {
     let htmlContent = fs.readFileSync('./src/rendering/render.html', {encoding: 'utf-8'});
     let vttContent = fs.readFileSync(vttFilePath, {encoding: 'utf-8'});
-    let vttJson = await vttToJson(vttContent);
+    // let vttJson = await vttToJson(vttContent);
     let backgroundDataUri = await DataURI(bgImagePath);
     return htmlContent.replace('<!-- replaced-HACK -->', `
     <script>
         let fps = ${fps};
-        let vttContent = ${JSON.stringify(vttJson)};
+        let vttContent = ${vttContent};
         let backgroundDataUri = '${backgroundDataUri}';
         window.onload = function () {
             window.afterLoadKar(vttContent, backgroundDataUri, fps);
