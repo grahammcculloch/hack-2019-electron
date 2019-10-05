@@ -57,14 +57,14 @@ function handleGetProjects() {
 function handleSubmission() {
   ipcMain.on('did-start-conversion', async (event, args) => {
     console.log('Starting command line', args);
-    const { hearThisChapterFolder, timingFile, backgroundFile } = args;
-    //todo get parameters
-    let videoPath = karaoke.execute(backgroundFile);
+    const { hearThisChapterFolder, backgroundFile } = args;
+    let videoPath = await karaoke.execute(hearThisChapterFolder, backgroundFile);
 
     const retArgs = { outputFile: videoPath };
     console.log('Command line process finished', retArgs);
     event.sender.send('did-finish-conversion', retArgs);
   });
+  // Note: this is not called from the UI at the moment:
   ipcMain.on('did-start-render', (event, args) => {
     console.log('Starting command line', args);
     const melt = spawn('C:\\Program Files\\Shotcut\\melt.exe', [ '-h' ]);

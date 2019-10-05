@@ -14,7 +14,7 @@ class Store {
   get stepStatus() {
     return [
       !!this.hearThisFolder,
-      !!this.timingFile,
+      // !!this.timingFile,
       !!this.backgroundFile,
     ];
   }
@@ -37,7 +37,7 @@ class Store {
 
   @computed
   get allValidInputs() {
-    return this.hearThisFolder && this.timingFile && this.backgroundFile;
+    return this.hearThisFolder && /* this.timingFile && */ this.backgroundFile;
   }
 }
 

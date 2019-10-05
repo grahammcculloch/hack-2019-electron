@@ -15,8 +15,9 @@ class TimingCard extends React.PureComponent {
         file={timingFile}
         label='Timing file'
         options={{
+          title: 'Select Timing File',
           filters: fileFilters.timing,
-          properties: ['openFile'],
+          properties: ['openFile', 'multiSelections'],
         }}
         onFileSelected={setTimingFile}
       />

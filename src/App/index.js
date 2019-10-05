@@ -4,7 +4,7 @@ import { Button, Intent, H1 } from '@blueprintjs/core';
 import Accordion from './components/Accordion';
 import {
   TextAndAudioCard,
-  TimingCard,
+  // TimingCard,
   BackgroundCard,
 } from './components/cards';
 import './index.scss';
@@ -38,12 +38,12 @@ class App extends Component {
           ' This folder should contain the text and audio files that will be used in the video.',
         content: <TextAndAudioCard />,
       },
-      {
-        title: 'Timing',
-        description:
-          'Now select the VTT file that will be used to display the text on the screen.',
-        content: <TimingCard />,
-      },
+      // {
+      //   title: 'Timing',
+      //   description:
+      //     'Now select the VTT file that will be used to display the text on the screen.',
+      //   content: <TimingCard />,
+      // },
       {
         title: 'Background',
         description:

@@ -14,22 +14,18 @@ const FileSelector = ({ file, label, help, options, onFileSelected }) => {
     }
   };
   return (
-    <div className="file-selector">
-      <div className="file-selector__label">{label}</div>
-      <Button text="Select" onClick={selectFile} />
-      <div className="file-selector__filename">
-        {file}
+    <div className='file-selector'>
+      <div className='file-selector__label'>{label}</div>
+      <div className='file-selector__button'>
+        <Button text='Select' onClick={selectFile} />
       </div>
+      <div className='file-selector__filename'>{file}</div>
     </div>
   );
 };
 
-FileSelector.propTypes = {
+FileSelector.propTypes = {};
 
-};
-
-FileSelector.defaultProps = {
-
-};
+FileSelector.defaultProps = {};
 
 export default FileSelector;

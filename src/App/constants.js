@@ -1,6 +1,6 @@
 const allFiles = {
   name: 'All files',
-  extensions: ['*.*']
+  extensions: ['*']
 };
 
 export const fileFilters = {

@@ -9,9 +9,12 @@
   &__label {
     min-width: 100px;
   }
-  &__file {
+  &__button.bp3-button {
+    display: block;
   }
   &__filename {
-
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
