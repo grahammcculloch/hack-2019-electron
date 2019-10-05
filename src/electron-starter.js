@@ -3,6 +3,7 @@ const electron = require('electron');
 const { app, ipcMain } = electron;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
+const spawn = require('child_process').spawn;
 
 const path = require('path');
 const url = require('url');
@@ -48,6 +49,23 @@ function handleSubmission() {
       console.log('Command line process finished', retArgs);
       event.sender.send('did-finish-conversion', retArgs);
     }, 2000);
+  });
+  ipcMain.on('did-start-render', (event, args) => {
+    console.log('Starting command line', args);
+    const melt = spawn('C:\\Program Files\\Shotcut\\melt.exe', [ '-h' ]);
+    melt.stdout.on('data', (data) => {
+      console.log(`stdout: ${data}`);
+    });
+    melt.on('close', (code) => {
+      console.log(`melt exit code ${code}`);
+      const retArgs = { outputFile: 'render.mp4' };
+      event.sender.send('did-finish-render', retArgs);
+    });
+    // setTimeout(() => {
+    //   const retArgs = { outputFile: 'render.mp4' };
+    //   console.log('Command line process finished', retArgs);
+    //   event.sender.send('did-finish-render', retArgs);
+    // }, 2000);
   });
 }
 

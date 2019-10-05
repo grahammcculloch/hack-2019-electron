@@ -14,16 +14,23 @@ class App extends Component {
     super(props);
     this.state = {
       processing: false,
+      rendering: false,
       textFile: '',
       audioFile: '',
       timingFile: '',
       backgroundFile: '',
       outputFile: '',
+      renderFile: '',
     };
     ipcRenderer.on('did-finish-conversion', (event, args) => {
       console.log('Received result', args);
       this.setState({ processing: false, outputFile: args.outputFile });
     });
+    ipcRenderer.on('did-finish-render', (event, args) => {
+      console.log('Received result', args);
+      this.setState({ rendering: false, renderFile: args.outputFile });
+    });
+
     this.cards = [
       {
         title: 'Text and Audio',
@@ -77,14 +84,30 @@ class App extends Component {
     });
   };
 
+  onRender = () => {
+    this.setState({ rendering: true }, () => {
+      const { textFile, audioFile, timingFile, backgroundFile } = this.state;
+      const args = {
+        textFile,
+        audioFile,
+        timingFile,
+        backgroundFile,
+      };
+      console.log('Requesting render', args);
+      ipcRenderer.send('did-start-render', args);
+    });
+  };
+
   render() {
     const {
       processing,
+      rendering,
       textFile,
       audioFile,
       timingFile,
       backgroundFile,
       outputFile,
+      renderFile,
     } = this.state;
     const validInputs = textFile && audioFile && timingFile && backgroundFile;
     return (
@@ -103,6 +126,16 @@ class App extends Component {
             />
           </div>
           <span>{outputFile}</span>
+          <div className='app__footer'>
+            <Button
+              large
+              intent={Intent.PRIMARY}
+              loading={processing}
+              text='Start'
+              onClick={this.onRender}
+            />
+          </div>
+          <span>{renderFile}</span>
         </div>
       </div>
     );
