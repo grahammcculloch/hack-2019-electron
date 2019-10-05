@@ -23,6 +23,7 @@ class Book {
 class Chapter {
     constructor() {
         this.name = '';
+        this.fullPath = '';
         this.audioFiles = [];
         this.textXmlFile = '';
     }
@@ -65,8 +66,10 @@ function makeChapter(projectName, bookName, name) {
     let chapterFiles = fs.readdirSync(path.join(DEFAULT_DATA_DIR, projectName, bookName, name));
     chapter.audioFiles = chapterFiles.filter(file => file != DEFAULT_XML_NAME)
         .map(fileName => path.join(DEFAULT_DATA_DIR, projectName, bookName, name, fileName));
+
     chapter.textXmlFile = chapterFiles.find(file => file == DEFAULT_XML_NAME);
     if (chapter.textXmlFile) chapter.textXmlFile = path.join(DEFAULT_DATA_DIR, projectName, bookName, name, chapter.textXmlFile);
+    chapter.fullPath = path.join(DEFAULT_DATA_DIR, projectName, bookName, name);
     return chapter;
 }
 console.log(JSON.stringify(getProjectStructure()));
