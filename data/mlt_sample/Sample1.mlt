@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mlt LC_NUMERIC="C" version="6.17.0" title="Shotcut version 19.09.14" producer="main_bin">
+  <profile description="HD 1080p 25 fps" width="1280" height="720" progressive="1" sample_aspect_num="1" sample_aspect_den="1" display_aspect_num="16" display_aspect_den="9" frame_rate_num="30" frame_rate_den="1" colorspace="709"/>
+  <producer id="producer0" title="Anonymous Submission" in="00:00:00.000" out="00:00:03.967">
+    <property name="length">04:00:00:00</property>
+    <property name="eof">pause</property>
+    <property name="resource">assets/Blank1280x720.png</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2019-10-05T03:52:39</property>
+    <property name="shotcut:hash">8ada7a6d3f7ed2a307603e00cc347a3d</property>
+    <property name="ignore_points">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+  </producer>
+  <producer id="producer1" title="Anonymous Submission" in="00:00:00.000" out="00:04:58.367">
+    <property name="length">8952</property>
+    <property name="eof">pause</property>
+    <property name="resource">audio/Mark_01.mp3</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="creation_time">2019-10-05T08:50:59</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">fef3d9b162e8e573045276eed8b9f5a3</property>
+  </producer>
+  <playlist id="main_bin" title="Shotcut version 19.09.14">
+    <property name="shotcut:projectAudioChannels">2</property>
+    <property name="shotcut:projectFolder">0</property>
+    <property name="xml_retain">1</property>
+    <entry producer="producer0" in="00:00:00.000" out="00:00:03.967"/>
+    <entry producer="producer1" in="00:00:00.000" out="00:04:58.367"/>
+  </playlist>
+  <producer id="black" in="00:00:00.000" out="00:04:58.367">
+    <property name="length">8952</property>
+    <property name="eof">pause</property>
+    <property name="resource">0</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgb24a</property>
+    <property name="set.test_audio">0</property>
+  </producer>
+  <playlist id="background">
+    <entry producer="black" in="00:00:00.000" out="00:04:58.367"/>
+  </playlist>
+  <producer id="producer2" title="Anonymous Submission" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00:00</property>
+    <property name="eof">pause</property>
+    <property name="resource">assets/Blank1280x720.png</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2019-10-05T03:52:39</property>
+    <property name="shotcut:hash">8ada7a6d3f7ed2a307603e00cc347a3d</property>
+    <property name="ignore_points">1</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <filter id="filter0" out="00:00:27.967">
+      <property name="mlt_service">webvfx</property>
+      <property name="disable">0</property>
+      <property name="direction">0</property>
+      <property name="duration">28</property>
+      <property name="resource">c:/Users/cambell/Documents/src/hack2019/hack-2019-electron/data/mlt_sample/html/simple_scroll.html</property>
+      <property name="factory">loader</property>
+    </filter>
+  </producer>
+  <playlist id="playlist0">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V1</property>
+    <entry producer="producer2" in="00:00:00.000" out="00:00:27.967"/>
+  </playlist>
+  <producer id="producer3" title="Anonymous Submission" in="00:00:00.000" out="00:04:58.367">
+    <property name="length">8952</property>
+    <property name="eof">pause</property>
+    <property name="resource">audio/Mark_01.mp3</property>
+    <property name="audio_index">0</property>
+    <property name="video_index">-1</property>
+    <property name="mute_on_pause">0</property>
+    <property name="mlt_service">avformat-novalidate</property>
+    <property name="seekable">1</property>
+    <property name="creation_time">2019-10-05T08:50:59</property>
+    <property name="global_feed">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">fef3d9b162e8e573045276eed8b9f5a3</property>
+    <property name="shotcut:caption">Mark_01.mp3</property>
+  </producer>
+  <playlist id="playlist1">
+    <property name="shotcut:audio">1</property>
+    <property name="shotcut:name">A1</property>
+    <entry producer="producer3" in="00:00:00.000" out="00:04:58.367"/>
+  </playlist>
+  <tractor id="tractor0" title="Shotcut version 19.09.14" global_feed="1" in="00:00:00.000" out="00:04:58.367">
+    <property name="shotcut">1</property>
+    <property name="shotcut:projectAudioChannels">2</property>
+    <property name="shotcut:projectFolder">0</property>
+    <track producer="background"/>
+    <track producer="playlist0" hide="audio"/>
+    <track producer="playlist1" hide="video"/>
+    <transition id="transition0">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition1">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="version">0.9</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="disable">1</property>
+    </transition>
+    <transition id="transition2">
+      <property name="a_track">0</property>
+      <property name="b_track">2</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+  </tractor>
+</mlt>
