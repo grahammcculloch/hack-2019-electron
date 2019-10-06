@@ -2,132 +2,194 @@
     {
         "type": "caption",
         "index": 1,
-        "start": 500,
-        "end": 6000,
-        "duration": 5500,
-        "content": ">> ALICE: Hi, my name is Alice Miller and this is John Brown",
-        "text": "Hi, my name is Alice Miller and this is John Brown",
+        "start": 1030,
+        "end": 6510,
+        "duration": 5480,
+        "content": "",
+        "text": "",
         "words": [
             {
-                "word": "Hi,",
-                "start": 500,
-                "end": 1000
+                "word": "Blessed",
+                "start": 1030,
+                "end": 1760
             },
             {
-                "word": "my",
-                "start": 1000,
-                "end": 1500
+                "word": "are",
+                "start": 1760,
+                "end": 2690
             },
             {
-                "word": "name",
-                "start": 1500,
-                "end": 2000
+                "word": "they",
+                "start": 2690,
+                "end": 3520
             },
             {
-                "word": "is",
-                "start": 2000,
-                "end": 2500
+                "word": "whose",
+                "start": 3520,
+                "end": 4270
             },
             {
-                "word": "Alice",
-                "start": 2500,
-                "end": 3000
+                "word": "ways",
+                "start": 4270,
+                "end": 4930
             },
             {
-                "word": "Miller",
-                "start": 3000,
-                "end": 3500
+                "word": "are",
+                "start": 4930,
+                "end": 5660
             },
             {
-                "word": "and",
-                "start": 3500,
-                "end": 4000
-            },
-            {
-                "word": "this",
-                "start": 4000,
-                "end": 4500
-            },
-            {
-                "word": "is",
-                "start": 4500,
-                "end": 5000
-            },
-            {
-                "word": "John",
-                "start": 5000,
-                "end": 5500
-            },
-            {
-                "word": "Brown",
-                "start": 5500,
-                "end": 6000
+                "word": "blameless,",
+                "start": 5660,
+                "end": 6510
             }
         ]
     },
     {
         "type": "caption",
         "index": 1,
-        "start": 6000,
-        "end": 11500,
-        "duration": 5500,
-        "content": ">> ALICE: Hi, my name is Alice Miller and this is John Brown",
-        "text": "Hi, my name is Alice Miller and this is John Brown",
+        "start": 6510,
+        "end": 13060,
+        "duration": 6550,
+        "content": "",
+        "text": "",
         "words": [
             {
-                "word": "Hi,",
-                "start": 6000,
-                "end": 6500
+                "word": "who,",
+                "start": 6510,
+                "end": 7200
             },
             {
-                "word": "my",
-                "start": 6500,
-                "end": 7000
+                "word": "walk",
+                "start": 7200,
+                "end": 7940
             },
             {
-                "word": "name",
-                "start": 7000,
-                "end": 7500
+                "word": "according",
+                "start": 7940,
+                "end": 8590
             },
             {
-                "word": "is",
-                "start": 7500,
-                "end": 8000
+                "word": "to",
+                "start": 8590,
+                "end": 9250
             },
             {
-                "word": "Alice",
-                "start": 8000,
-                "end": 8500
+                "word": "the",
+                "start": 9250,
+                "end": 9940
             },
             {
-                "word": "Miller",
-                "start": 8500,
-                "end": 9000
+                "word": "law",
+                "start": 9940,
+                "end": 10610
             },
+            {
+                "word": "of",
+                "start": 10610,
+                "end": 11350
+            },
+            {
+                "word": "the",
+                "start": 11350,
+                "end": 12140
+            },
+            {
+                "word": "Lord.",
+                "start": 12140,
+                "end": 13060
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 1,
+        "start": 13060,
+        "end": 18080,
+        "duration": 5020,
+        "content": "",
+        "text": "",
+        "words": [
+            {
+                "word": "Blessed",
+                "start": 13060,
+                "end": 13710
+            },
+            {
+                "word": "are",
+                "start": 13710,
+                "end": 14420
+            },
+            {
+                "word": "they",
+                "start": 14420,
+                "end": 15170
+            },
+            {
+                "word": "who",
+                "start": 15170,
+                "end": 15870
+            },
+            {
+                "word": "keep",
+                "start": 15870,
+                "end": 16570
+            },
+            {
+                "word": "His",
+                "start": 16570,
+                "end": 17290
+            },
+            {
+                "word": "statues",
+                "start": 17290,
+                "end": 18080
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 1,
+        "start": 18080,
+        "end": 26900,
+        "duration": 5020,
+        "content": "",
+        "text": "",
+        "words": [
             {
                 "word": "and",
-                "start": 9000,
-                "end": 9500
+                "start": 18080,
+                "end": 19000
             },
             {
-                "word": "this",
-                "start": 9500,
-                "end": 10000
+                "word": "seek",
+                "start": 19000,
+                "end": 19730
             },
             {
-                "word": "is",
-                "start": 10000,
-                "end": 10500
+                "word": "Him",
+                "start": 19730,
+                "end": 20420
             },
             {
-                "word": "John",
-                "start": 10500,
-                "end": 11000
+                "word": "with",
+                "start": 20420,
+                "end": 21120
             },
             {
-                "word": "Brown",
-                "start": 11000,
-                "end": 11500
+                "word": "all",
+                "start": 21120,
+                "end": 21820
+            },
+            {
+                "word": "their",
+                "start": 21820,
+                "end": 22550
+            },
+            {
+                "word": "heart.",
+                "start": 22550,
+                "end": 26900
             }
         ]
     }
