@@ -2,11 +2,15 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import FileSelector from '../FileSelector';
 import { fileFilters } from '../../constants';
-const wavelyric = require('./wavelyric/index.html');
+const wavelyricHtml = require('./wavelyric/index.html.js');
 
 @inject('store')
 @observer
 class TimingCard extends React.PureComponent {
+  componentDidMount () {
+    angular.bootstrap(this.container, ['wavelyricApp']);
+  }
+
   render() {
     const {
       store: { timingFile, setTimingFile },
@@ -25,7 +29,7 @@ class TimingCard extends React.PureComponent {
         />
         <div>
           <p>WaveLyric goes here</p>
-          <iframe src={wavelyric}></iframe>
+          <div ref={c => this.container = c} dangerouslySetInnerHTML={{__html: wavelyricHtml}}></div>
         </div>
       </div>
     );
