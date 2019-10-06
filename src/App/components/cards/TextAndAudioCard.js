@@ -112,8 +112,8 @@ class TextAndAudioCard extends React.PureComponent {
     if (!hearThisProjects.length) {
       return (
         <Callout title='No HearThis projects found' intent={Intent.WARNING}>
-          Bible Karaoke was unable to locate any HearThis projects. Make sure
-          <a href='https://software.sil.org/hearthis/'>HearThis</a> is installed
+          Bible Karaoke was unable to locate any HearThis projects. Make
+          sure <a href='https://software.sil.org/hearthis/'>HearThis</a> is installed
           and you have at least one project with audio for at least one chapter
           of one book.
         </Callout>

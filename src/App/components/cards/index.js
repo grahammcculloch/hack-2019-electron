@@ -16,7 +16,7 @@ export const cards = [
   {
     title: 'Text and Audio',
     description:
-      'This first step is where you select the HereThis project, book and chapter.' +
+      'This first step is where you select the HearThis project, book and chapter.' +
       ' This folder should contain the text and audio files that will be used in the video.',
     content: <TextAndAudioCard />,
   },
