@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Card, Button, H3, Elevation, Icon, Intent, Collapse } from '@blueprintjs/core';
+import { Card, H3, Elevation, Icon, Intent, Collapse } from '@blueprintjs/core';
+import ActionButton from './ActionButton';
 import './Accordion.scss';
 
 @inject('store')
@@ -24,13 +25,20 @@ class Accordion extends React.PureComponent {
   };
 
   render() {
-    const { cards, store: { stepStatus } } = this.props;
+    const {
+      cards,
+      store: { stepStatus },
+    } = this.props;
     const { currentCardIndex } = this.state;
     return (
-      <div className="accordion">
+      <div className='accordion'>
         {cards.map((card, index) => (
-          <Card key={index} className="accordion__card" elevation={Elevation.TWO}>
-            <div className="accordion__card-title">
+          <Card
+            key={index}
+            className='accordion__card'
+            elevation={Elevation.TWO}
+          >
+            <div className='accordion__card-title'>
               <H3>
                 <a
                   onClick={() => {
@@ -40,22 +48,20 @@ class Accordion extends React.PureComponent {
                   {`${index + 1}. ${card.title}`}
                 </a>
               </H3>
-              { stepStatus[index] ? <Icon icon="tick-circle" /> : null }
+              {stepStatus[index] ? <Icon icon='tick-circle' /> : null}
             </div>
             <Collapse isOpen={index === currentCardIndex}>
               <p>{card.description}</p>
               {card.content}
-              <div className='accordion__card-footer'>
-                <Button
-                  disabled={!stepStatus[index]}
-                  intent={Intent.PRIMARY}
-                  onClick={() => {
-                    this.onNext(index);
-                  }}
-                >
-                  { index === (cards.length - 1) ? 'Done' : 'Next' }
-                </Button>
-              </div>
+              <ActionButton
+                disabled={!stepStatus[index]}
+                intent={Intent.PRIMARY}
+                onClick={() => {
+                  this.onNext(index);
+                }}
+              >
+                {index === cards.length - 1 ? 'Done' : 'Next'}
+              </ActionButton>
             </Collapse>
           </Card>
         ))}

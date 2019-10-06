@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Button, Intent, H1 } from '@blueprintjs/core';
+import { Intent, H1, H6, Classes, Callout } from '@blueprintjs/core';
 import Accordion from './components/Accordion';
-import {
-  TextAndAudioCard,
-  // TimingCard,
-  BackgroundCard,
-  OutputCard,
-} from './components/cards';
+import { cards } from './components/cards';
+import ActionButton from './components/ActionButton';
 import './index.scss';
 const { ipcRenderer } = window.require('electron');
 
@@ -15,48 +11,37 @@ const AppStatus = {
   configuring: 'configuring',
   processing: 'processing',
   done: 'done',
+  error: 'error',
 };
 
 @inject('store')
 @observer
-class App extends Component {
+class App extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       status: AppStatus.configuring,
+      error: undefined,
     };
     ipcRenderer.on('did-finish-conversion', (event, args) => {
       console.log('Received result', args);
-      this.setState({ status: AppStatus.done });
+      if (args.outputFile) {
+        this.setState({ status: AppStatus.done });
+      } else {
+        this.setState({
+          status: AppStatus.error,
+          error: args.error,
+        });
+      }
     });
-
-    this.cards = [
-      {
-        title: 'Text and Audio',
-        description:
-          'This first step is where you select the HereThis project, book and chapter.' +
-          ' This folder should contain the text and audio files that will be used in the video.',
-        content: <TextAndAudioCard />,
-      },
-      // {
-      //   title: 'Timing',
-      //   description:
-      //     'Now select the VTT file that will be used to display the text on the screen.',
-      //   content: <TimingCard />,
-      // },
-      {
-        title: 'Background',
-        description:
-          'Then select a background image or video that will be used as the background of the generated video',
-        content: <BackgroundCard />,
-      },
-      {
-        title: 'Output',
-        description: "Finally, select where you'll save the generated video",
-        content: <OutputCard />,
-      },
-    ];
   }
+
+  reset = () => {
+    this.setState({
+      status: AppStatus.configuring,
+      error: undefined,
+    });
+  };
 
   openOutputFolder = () => {
     const { outputFile } = this.props.store;
@@ -77,35 +62,49 @@ class App extends Component {
     });
   };
 
-  render() {
-    const { status } = this.state;
+  renderFooter() {
     const {
       store: { allValidInputs },
     } = this.props;
+    const { error, status } = this.state;
+    if (status === AppStatus.done) {
+      return (
+        <ActionButton
+          large
+          intent={Intent.PRIMARY}
+          text='Open output folder'
+          onClick={this.openOutputFolder}
+        />
+      );
+    } else if (status === AppStatus.error) {
+      return (
+        <Callout title='Uh-oh!' intent={Intent.DANGER}>
+          <p>Looks like something went wrong.</p>
+          <H6>Details</H6>
+          <p className={Classes.TEXT_MUTED}>{error.message}</p>
+          <ActionButton onClick={this.reset} text='OK' />
+        </Callout>
+      );
+    }
+    return (
+      <ActionButton
+        large
+        intent={Intent.PRIMARY}
+        loading={status === AppStatus.processing}
+        disabled={!allValidInputs}
+        text='Make my video!'
+        onClick={this.onStart}
+      />
+    );
+  }
+
+  render() {
     return (
       <div className='app bp3-dark'>
         <div className='app__container'>
           <H1>Bible Karaoke</H1>
-          <Accordion cards={this.cards} />
-          <div className='app__footer'>
-            {status === AppStatus.done ? (
-              <Button
-                large
-                intent={Intent.PRIMARY}
-                text='Open output folder'
-                onClick={this.openOutputFolder}
-              />
-            ) : (
-              <Button
-                large
-                intent={Intent.PRIMARY}
-                loading={status === AppStatus.processing}
-                disabled={!allValidInputs}
-                text='Make my video!'
-                onClick={this.onStart}
-              />
-            )}
-          </div>
+          <Accordion cards={cards} />
+          <div className='app__footer'>{this.renderFooter()}</div>
         </div>
       </div>
     );

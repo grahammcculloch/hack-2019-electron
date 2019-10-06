@@ -1,5 +1,5 @@
 import React from 'react';
-import { HTMLSelect } from '@blueprintjs/core';
+import { HTMLSelect, Callout, Intent } from '@blueprintjs/core';
 import { inject, observer } from 'mobx-react';
 const { ipcRenderer } = window.require('electron');
 
@@ -19,8 +19,8 @@ class TextAndAudioCard extends React.PureComponent {
     };
     ipcRenderer.on('did-finish-getprojectstructure', (event, projects) => {
       console.log('Received project structure', projects);
+      this.props.store.setHearThisProjects(projects);
       this.setState({
-        projects,
         selectedProject: noSelection,
         selectedBook: noSelection,
         selectedChapter: noSelection,
@@ -29,42 +29,55 @@ class TextAndAudioCard extends React.PureComponent {
   }
 
   componentDidMount() {
-    console.log('componentDidMount', this.props);
     ipcRenderer.send('did-start-getprojectstructure');
   }
 
   selectProject = evt => {
-    this.setState({
-      selectedProject: parseInt(evt.currentTarget.value, 10),
-      selectedBook: noSelection,
-      selectedChapter: noSelection,
-    }, () => {
-      this.checkFolder();
-    });
+    this.setState(
+      {
+        selectedProject: parseInt(evt.currentTarget.value, 10),
+        selectedBook: noSelection,
+        selectedChapter: noSelection,
+      },
+      () => {
+        this.checkFolder();
+      },
+    );
   };
 
   selectBook = evt => {
-    this.setState({
-      selectedBook: parseInt(evt.currentTarget.value, 10),
-      selectedChapter: noSelection,
-    }, () => {
-      this.checkFolder();
-    });
+    this.setState(
+      {
+        selectedBook: parseInt(evt.currentTarget.value, 10),
+        selectedChapter: noSelection,
+      },
+      () => {
+        this.checkFolder();
+      },
+    );
   };
 
   selectChapter = evt => {
-    this.setState({
-      selectedChapter: parseInt(evt.currentTarget.value, 10),
-    }, () => {
-      this.checkFolder();
-    });
+    this.setState(
+      {
+        selectedChapter: parseInt(evt.currentTarget.value, 10),
+      },
+      () => {
+        this.checkFolder();
+      },
+    );
   };
 
   checkFolder = () => {
-    const { projects, selectedProject, selectedBook, selectedChapter } = this.state;
-    const { store: { setHearThisFolder }} = this.props;
+    const { selectedProject, selectedBook, selectedChapter } = this.state;
+    const {
+      store: { hearThisProjects, setHearThisFolder },
+    } = this.props;
     if (selectedChapter !== noSelection) {
-      const hearThisChapterFolder = projects[selectedProject].books[selectedBook].chapters[selectedChapter].fullPath;
+      const hearThisChapterFolder =
+        hearThisProjects[selectedProject].books[selectedBook].chapters[
+          selectedChapter
+        ].fullPath;
       setHearThisFolder(hearThisChapterFolder);
     } else {
       setHearThisFolder(undefined);
@@ -72,33 +85,40 @@ class TextAndAudioCard extends React.PureComponent {
   };
 
   render() {
+    const { selectedProject, selectedBook, selectedChapter } = this.state;
     const {
-      projects,
-      selectedProject,
-      selectedBook,
-      selectedChapter,
-    } = this.state;
-    const { onSelectFolder } = this.props;
-    const projectOptions = projects.map((p, index) => ({
+      store: { hearThisProjects },
+    } = this.props;
+    const projectOptions = hearThisProjects.map((p, index) => ({
       value: index,
       label: p.name,
     }));
     const bookOptions =
       selectedProject !== noSelection
-        ? projects[selectedProject].books.map((p, index) => ({
+        ? hearThisProjects[selectedProject].books.map((p, index) => ({
             value: index,
             label: p.name,
           }))
         : [];
     const chapterOptions =
       selectedBook !== noSelection
-        ? projects[selectedProject].books[selectedBook].chapters.map(
+        ? hearThisProjects[selectedProject].books[selectedBook].chapters.map(
             (p, index) => ({
               value: index,
               label: p.name,
             }),
           )
         : [];
+    if (!hearThisProjects.length) {
+      return (
+        <Callout title='No HearThis projects found' intent={Intent.WARNING}>
+          Bible Karaoke was unable to locate any HearThis projects. Make sure
+          <a href='https://software.sil.org/hearthis/'>HearThis</a> is installed
+          and you have at least one project with audio for at least one chapter
+          of one book.
+        </Callout>
+      );
+    }
     return (
       <div>
         <div className='card__option'>
@@ -131,9 +151,5 @@ class TextAndAudioCard extends React.PureComponent {
     );
   }
 }
-
-TextAndAudioCard.propTypes = {};
-
-TextAndAudioCard.defaultProps = {};
 
 export default TextAndAudioCard;

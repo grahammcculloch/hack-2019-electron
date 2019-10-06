@@ -8,7 +8,7 @@ import { fileFilters } from '../../constants';
 class OutputCard extends React.PureComponent {
   render() {
     const {
-      store: { outputFile, setOutputFile },
+      store: { outputFile, setOutputFile, defaultVideoName },
     } = this.props;
     return (
       <FileSelector
@@ -16,6 +16,7 @@ class OutputCard extends React.PureComponent {
         file={outputFile}
         label='Output file'
         options={{
+          defaultPath: defaultVideoName,
           title: 'Save video file as',
           filters: fileFilters.output,
           properties: ['openFile'],

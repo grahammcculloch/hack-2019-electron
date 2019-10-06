@@ -1,4 +1,5 @@
 import { observable, computed, action } from "mobx";
+import path from 'path';
 
 class Store {
   @observable 
@@ -13,6 +14,19 @@ class Store {
   @observable 
   outputFile = '';
 
+  @observable
+  hearThisProjects = [];
+
+  @computed
+  get defaultVideoName() {
+    if (!this.hearThisFolder) {
+      return 'bible-karaoke.mp4';
+    }
+    // Name the video by book and chapter (e.g. 'Mark2.mp4')
+    const dirs = this.hearThisFolder.split(/[\/\\]/);
+    return `${dirs[dirs.length - 2]}${dirs[dirs.length - 1]}.mp4`;
+  }
+
   @computed
   get stepStatus() {
     return [
@@ -21,6 +35,12 @@ class Store {
       !!this.backgroundFile,
       !!this.outputFile,
     ];
+  }
+
+  @action.bound
+  setHearThisProjects(projects) {
+    this.hearThisProjects = projects;
+    this.hearThisFolder = '';
   }
 
   @action.bound

@@ -45,9 +45,8 @@ function createWindow() {
   });
 }
 
-
 function handleGetProjects() {
-  ipcMain.on('did-start-getprojectstructure', async (event) => {
+  ipcMain.on('did-start-getprojectstructure', async event => {
     console.log('Getting project structure');
     hearThisProjects = getProjectStructure();
     event.sender.send('did-finish-getprojectstructure', hearThisProjects);
@@ -64,20 +63,27 @@ function handleSubmission() {
   ipcMain.on('did-start-conversion', async (event, args) => {
     console.log('Starting command line', args);
     const { hearThisChapterFolder, backgroundFile, outputFile } = args;
-    let videoPath = await karaoke.execute(hearThisChapterFolder, backgroundFile, outputFile);
+    let result = await karaoke.execute(
+      hearThisChapterFolder,
+      backgroundFile,
+      outputFile,
+    );
 
-    const retArgs = { outputFile: videoPath };
+    const retArgs =
+      typeof result === 'string'
+        ? { outputFile: result }
+        : { error: { message: result.message } };
     console.log('Command line process finished', retArgs);
     event.sender.send('did-finish-conversion', retArgs);
   });
   // Note: this is not called from the UI at the moment:
   ipcMain.on('did-start-render', (event, args) => {
     console.log('Starting command line', args);
-    const melt = spawn('C:\\Program Files\\Shotcut\\melt.exe', [ '-h' ]);
-    melt.stdout.on('data', (data) => {
+    const melt = spawn('C:\\Program Files\\Shotcut\\melt.exe', ['-h']);
+    melt.stdout.on('data', data => {
       console.log(`stdout: ${data}`);
     });
-    melt.on('close', (code) => {
+    melt.on('close', code => {
       console.log(`melt exit code ${code}`);
       const retArgs = { outputFile: 'render.mp4' };
       event.sender.send('did-finish-render', retArgs);
