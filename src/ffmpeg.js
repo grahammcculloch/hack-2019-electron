@@ -6,7 +6,7 @@ async function setupFfmpeg() {
     let dest = path.join(process.cwd(), 'binaries');
     await new Promise(function setupCallback(accept, reject) {
         ffbinaries.downloadBinaries(['ffmpeg', 'ffprobe'], {quiet: true, destination: dest}, function () {
-            console.log('Downloaded ffmpeg binaries to ' + dest + '.');
+            //console.log('Downloaded ffmpeg binaries to ' + dest + '.');
             accept();
           });
     });
