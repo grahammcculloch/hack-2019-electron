@@ -1,13 +1,13 @@
 import React from 'react';
 
 import TextAndAudioCard from './TextAndAudioCard';
-// import TimingCard from './TimingCard';
+import TimingCard from './TimingCard';
 import BackgroundCard from './BackgroundCard';
 import OutputCard from './OutputCard';
 
 export {
   TextAndAudioCard,
-  // TimingCard,
+  TimingCard,
   BackgroundCard,
   OutputCard,
 };
@@ -20,12 +20,12 @@ export const cards = [
       ' This folder should contain the text and audio files that will be used in the video.',
     content: <TextAndAudioCard />,
   },
-  // {
-  //   title: 'Timing',
-  //   description:
-  //     'Now select the VTT file that will be used to display the text on the screen.',
-  //   content: <TimingCard />,
-  // },
+  {
+    title: 'Timing',
+    description:
+      'Inspect and fine tune the timing on each line and even each word. You can skip this step.',
+    content: <TimingCard />,
+  },
   {
     title: 'Background',
     description:
