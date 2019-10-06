@@ -1,9 +1,4 @@
 class Lrc {
-  spaces;
-  metadata;
-  markers;
-  lines;
-  wordTimings;
   
   fromLrcString(lrcString) {
     this.spaces = 0;
@@ -135,5 +130,5 @@ class Lrc {
 	};
 
 }
-
-export default Lrc;
+module.exports = {Lrc}
+// export default Lrc;
