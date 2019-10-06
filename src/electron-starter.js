@@ -62,9 +62,9 @@ function handleOpenOutputFolder() {
 function handleSubmission() {
   ipcMain.on('did-start-conversion', async (event, args) => {
     console.log('Starting command line', args);
-    const { hearThisChapterFolder, backgroundFile, outputFile } = args;
+    const { hearThisFolder, backgroundFile, outputFile } = args;
     let result = await karaoke.execute(
-      hearThisChapterFolder,
+      hearThisFolder,
       backgroundFile,
       outputFile,
     );

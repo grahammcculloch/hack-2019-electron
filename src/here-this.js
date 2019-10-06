@@ -29,8 +29,8 @@ class Chapter {
     }
 }
 const DEFAULT_XML_NAME = 'info.xml';
-const DEFAULT_DATA_DIR = 'C:/ProgramData/SIL/HearThis/';
-//const DEFAULT_DATA_DIR = '/home/hahnkev/hereThisProjects/';
+// const DEFAULT_DATA_DIR = 'C:/ProgramData/SIL/HearThis/';
+const DEFAULT_DATA_DIR = '/home/hahnkev/hereThisProjects/';
 function getProjectStructure() {
     try {
         let projectNames = fs.readdirSync(DEFAULT_DATA_DIR);

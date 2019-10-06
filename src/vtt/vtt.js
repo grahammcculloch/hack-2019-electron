@@ -18,7 +18,10 @@ async function getVtt(chapterPath) {
 async function getHereThisInLyricFormat(chapterPath, format, splitOnWords) {
     let outputFileName = 'tmp';
     let ffmpegPath = path.join(await setupFfmpeg(), 'ffmpeg');
-    let result = shell.exec(`${VTT_BINARY_PATH} ${chapterPath} ${outputFileName} -f ${ffmpegPath} -o ${format} ${splitOnWords ? '-w' : ''}`);
+    let execCmd = `${VTT_BINARY_PATH} ${chapterPath} ${outputFileName} -f ${ffmpegPath} -o ${format} ${splitOnWords ? '-w' : ''}`;
+    console.log('binary: ', execCmd);
+    //todo this is  broken
+    let result = shell.exec(execCmd);
     if (result.code != 0) {
         console.log('Program output:', result.stdout);
         console.log('Program stderr:', result.stderr);

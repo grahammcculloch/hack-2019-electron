@@ -1,4 +1,4 @@
-const { getVtt } = require('./vtt/vtt');
+const { getHereThisInLyricFormat } = require('./vtt/vtt');
 const renderFrames = require('./rendering/render-frames');
 const renderVideo = require('./rendering/render-video');
 const fs = require('fs');
@@ -10,8 +10,8 @@ module.exports = {
 
 async function execute(hereThisFolder, backgroundFile, outputFile) {
   try {
-    let vttFilePath = await getVtt(hereThisFolder);
-    let framesFolder = await renderFrames.render(vttFilePath, backgroundFile);
+    let lrcFilePath = await getHereThisInLyricFormat(hereThisFolder, 'lrc', true);
+    let framesFolder = await renderFrames.render(lrcFilePath, backgroundFile);
     let videoPath = await renderVideo.renderToVideo(
       framesFolder,
       hereThisFolder,

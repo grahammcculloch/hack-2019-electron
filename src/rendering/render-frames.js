@@ -3,14 +3,15 @@ const fs = require('fs');
 const path = require('path');
 const process = require('process');
 const vttToJson = require('vtt-json');
+const {Lrc} = require('./../vtt/lrc');
 const DataURI = require('datauri').promise;
 
 module.exports = { render };
 
-async function render(vttFilePath, bgImagePath, testOnly) {
+async function render(lrcFilePath, bgImagePath, testOnly) {
     let fps = 30;
     // let ffmpegLocation = await setupFfmpeg();
-    let htmlContent = await getHtmlPage(vttFilePath, bgImagePath, fps);
+    let htmlContent = await getHtmlPage(lrcFilePath, bgImagePath, fps);
     fs.writeFileSync('renderedAnimation.html', htmlContent);
     if (testOnly) return;
     
@@ -38,15 +39,19 @@ async function render(vttFilePath, bgImagePath, testOnly) {
     return outputLocation;
 }
 
-async function getHtmlPage(vttFilePath, bgImagePath, fps) {
+async function getHtmlPage(lrcFilePath, bgImagePath, fps) {
     let htmlContent = fs.readFileSync('./src/rendering/render.html', { encoding: 'utf-8' });
-    let vttContent = fs.readFileSync(vttFilePath, { encoding: 'utf-8' });
+    let lrcContent = fs.readFileSync(lrcFilePath, { encoding: 'utf-8' });
+
+    let lrcJson = new Lrc();
+    lrcJson.fromLrcString(lrcContent);
+
     let vttJson = await vttToJson(vttContent);
     let backgroundDataUri = await DataURI(bgImagePath);
     return htmlContent.replace('<!-- replaced-HACK -->', `
     <script>
         let fps = ${fps};
-        let vttContent = ${vttContent};
+        let vttContent = ${JSON.stringify(lrcJson)};
         let backgroundDataUri = '${backgroundDataUri}';
         window.onload = function () {
             window.afterLoadKar(vttContent, backgroundDataUri, fps);
