@@ -16,17 +16,18 @@ class Formatter {
   }
 
   static parseTimecodeString (timecodeString) {
-    var matches = timecodeString.match(/([0-9]+):([0-9][0-9]\.([0-9]+)?)/);
+    var matches = timecodeString.match(/([0-9]+):([0-9]+):([0-9][0-9]\.([0-9]+)?)/);
 
     if (matches) {
-      let minutes = parseInt(matches[1]);
-      let seconds = parseFloat(matches[2]);
+      let hours = parseInt(matches[1]);
+      let minutes = parseInt(matches[2]);
+      let seconds = parseFloat(matches[3]);
 
-      return minutes * 60 + seconds;
+      return (hours * 60 * 60) + (minutes * 60) + seconds;
     } else {
       return 0;
     }
   }
 }
 
-export default Formatter;
+module.exports = {Formatter};

@@ -1,4 +1,5 @@
-import Formatter from './Formatter'
+// import Formatter from './Formatter'
+const {Formatter} = require('./Formatter');
 
 class Lrc {
   

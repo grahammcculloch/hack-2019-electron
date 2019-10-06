@@ -25,6 +25,7 @@ async function render(vttFilePath, bgImagePath, testOnly) {
         fps,
         frames: fps * 5, // 5 seconds at 60 fps
         prepare: async function (browser, page) {
+            await page.setViewport({ width: 720, height: 480 });
             await page.setContent(htmlContent);
         },
         render: async (browser, page, frame) => {
