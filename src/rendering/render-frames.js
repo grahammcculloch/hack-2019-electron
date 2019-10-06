@@ -9,7 +9,7 @@ module.exports = {render};
 
 (async function mainIIFE() {
     try {
-        await render('./src/rendering/lrc.json', './src/rendering/bunny.jpeg');
+        await render('./src/rendering/lrc.json', './src/rendering/testBG.jpg');
     } catch (error) {
         console.error(error);
     }

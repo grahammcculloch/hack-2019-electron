@@ -77,24 +77,25 @@
         }
 
         .karaoke-caption {
-            padding-top: 30px;
             font-size: 20pt;
+            padding-top: 175px;
             font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
             font-weight: 300;
-            margin: 20px 40px;
-            width: 640px;
+            margin: 0px 56px;
+            width: 608px;
             position: absolute;
         }
         
         .karaoke-caption .phrase {
-            margin: 15px 0;
+            padding: 15px 0;
         }
 
-        .karaoke-caption div {
+        .karaoke-caption .words {
             color: #555;
             line-height: 32px;
             margin: -5px -5px;
             padding: 5px 5px;
+            border-radius: 10px;
         }
 
         .karaoke-caption div.highlighted {
@@ -103,6 +104,7 @@
             -moz-animation: pulse 0.3s ease-out;
             animation: pulse 0.3s ease-out;
             background: #ffff00;
+            border-radius: 10px;
         }
         .karaoke-caption .words {
             display: inline-block;
@@ -112,6 +114,19 @@
             height: 480px;
             margin: 0 auto;
             background: #bababa;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+            position: relative;
+        }
+        #backgroundHelper {
+            background: #FFF;
+            width: 648px;
+            border-radius: 10px;
+            height: 62px;
+            top: 176px;
+            left: 36px;
+            position: absolute;
         }
     </style>
     <script>
@@ -141,10 +156,10 @@
 
         window.afterLoadKar = function(textObj, backgroundImage, fps) {
             console.log('vtt: ', textObj);
-            let image = document.createElement("img");
+            // let image = document.createElement("img");
             let imageParent = document.getElementById("imgParent");
-            image.id = "imgId";
-            image.src = backgroundImage;            // image.src = "IMAGE URL/PATH"
+            // image.id = "imgId";
+            imageParent.style.backgroundImage = "url("+backgroundImage+")";            // image.src = "IMAGE URL/PATH"
             // imageParent.appendChild(image);
 
             var subtitles = document.querySelector("#subtitles2");
@@ -197,7 +212,7 @@
                     
                     var elem = document.querySelector('#p'+line + ' .'+container);
                     var wordAnimate = elem.animate({
-                        background: ["#bababa", "#ffff00"],
+                        background: ["rgba(255,255,0,0)", "rgba(255,255,0,1)"],
                     }, {
                         duration: duration,
                         delay: start,
@@ -255,6 +270,7 @@
     <!-- <p>hello world time: <span id="time"></span></p>
     <div style="height: 100px; width: 100px; background-color: red"></div> -->
     <div id="imgParent">
+        <div id="backgroundHelper"></div>
         <div class="line subs karaoke-caption" id="subtitles2"></div>
     </div>
 

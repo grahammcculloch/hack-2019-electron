@@ -151,8 +151,8 @@
         "type": "caption",
         "index": 1,
         "start": 18080,
-        "end": 26900,
-        "duration": 5020,
+        "end": 23900,
+        "duration": 5820,
         "content": "",
         "text": "",
         "words": [
@@ -189,7 +189,7 @@
             {
                 "word": "heart.",
                 "start": 22550,
-                "end": 26900
+                "end": 23900
             }
         ]
     }
