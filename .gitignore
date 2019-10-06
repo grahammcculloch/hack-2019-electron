@@ -20,3 +20,5 @@ src/rendering/output/**
 
 binaries/ffmpeg.exe
 binaries/ffprobe.exe
+binaries/ffmpeg
+binaries/ffprobe
