@@ -1,3 +1,5 @@
+import Formatter from './Formatter'
+
 class Lrc {
   
   fromLrcString(lrcString) {

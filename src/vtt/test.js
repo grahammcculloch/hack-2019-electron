@@ -1,6 +1,6 @@
 const vtt = require('./vtt');
 const fs = require('fs');
-const {Lrc} = require('./lrc');
+const {Lrc} = require('./Lrc');
 
 (async function test() {
     let resultFile = await vtt.getHereThisInLyricFormat('/home/hahnkev/hereThisProjects/ENT/Mark/1', 'lrc', true);
