@@ -22,58 +22,8 @@
             /* background-color: yellow; */
         }
 
-        .highlight {
-            white-space: nowrap;
-            overflow: hidden;
-            width: auto;
-            color: yellow;
-            animation: linearwipe 2s steps(200, end);
-        }
-
         body {
             background-color: #000;
-        }
-
-        @-webkit-keyframes pulse {
-            0% {
-                color: #AAA;
-            }
-
-            50% {
-                color: #FFF;
-            }
-
-            100% {
-                color: #AAA;
-            }
-        }
-
-        /* @-moz-keyframes pulse {
-            0% {
-                color: #AAA;
-            }
-
-            50% {
-                color: #FFF;
-            }
-
-            100% {
-                color: #AAA;
-            }
-        } */
-
-        @keyframes pulse {
-            0% {
-                color: #000;
-            }
-
-            50% {
-                color: #000;
-            }
-
-            100% {
-                color: #000;
-            }
         }
 
         .karaoke-caption {
@@ -98,14 +48,6 @@
             border-radius: 10px;
         }
 
-        .karaoke-caption div.highlighted {
-            color: #000;
-            -webkit-animation: pulse 0.3s ease-out;
-            -moz-animation: pulse 0.3s ease-out;
-            animation: pulse 0.3s ease-out;
-            background: #ffff00;
-            border-radius: 10px;
-        }
         .karaoke-caption .words {
             display: inline-block;
         }
@@ -135,10 +77,6 @@
             if (!timeElement) timeElement = document.getElementById("time");
             return timeElement;
         }
-        // setInterval(() => {
-        //     let currentTime = new Date();
-        //     getTimeElement().innerText = currentTime.toJSON();
-        // }, 1);
         function setTimeElement(text) {
             getTimeElement().innerText = text;
         }
@@ -155,56 +93,61 @@
         var animations = [];
 
         window.afterLoadKar = function(textObj, backgroundImage, fps) {
-            console.log('vtt: ', textObj);
-            // let image = document.createElement("img");
             let imageParent = document.getElementById("imgParent");
-            // image.id = "imgId";
             imageParent.style.backgroundImage = "url("+backgroundImage+")";            // image.src = "IMAGE URL/PATH"
-            // imageParent.appendChild(image);
 
             var subtitles = document.querySelector("#subtitles2");
             var textObject = [];
             var rawSubTitle = "";
             var linePos = 0;
 
+            // take the JSON obj that has the text and timings and display them on the page with animation
             function createSubtitle(textObject) {
                 
                 var lyrics = "";
                 var i = 0;
+                // we need to store these to access later easily when building the animations
                 wordTiming = [];
                 phraseTiming = [];
                 textObject.forEach((line) => {
-                    fulltext = [];
-                    
+
                     var line = line;
                     var j = 0;
                     text = "";
                     
+                    // loop through the words and created containers for each word
+                    // also store the animation info for each word for later
                     line.words.forEach(function(w) {
                         var wordDuration, wordStart, word;
                         word = w.word;
                         wordDuration = w.end-w.start;
                         wordStart = w.start;
                         
+                        // concat the containers together for later
                         text += "<div class='words w" + j + "'>" + word + "</div> ";
+                        // this makes the animation creation easier later
                         wordTiming.push({word: word, index: j, start: wordStart, duration: wordDuration, line: i})
                         j++;
                     });
                     
+                    // this makes the phrase timeing easier for later
                     phraseTiming.push({id: "p"+i, end: line.end});
+                    // concat the lines together with all words inside
                     lyrics += "<div class='phrase' id='p" + i + "'>" + text + "</div>";
                     i++;
                 });
                 
+                // put the words onto the page
                 subtitles.innerHTML = lyrics;
 
+                // animate the highlighting of each word
                 var previousDuration = 0;
                 wordTiming.forEach(function(word) {
-                    console.log(word);
                     highlight("w"+word.index, word.start, word.line, "p"+word.line-1, animations, previousDuration, word.duration);
                     previousDuration = word.start;
                 });
 
+                // word animation function
                 function highlight(container, start, line, previousContainer, animations, previousDuration, duration) {
 
                     var previousContainer = previousContainer;
@@ -218,15 +161,19 @@
                         delay: start,
                         iterations: 1
                     });
+                    // pause the animation so the app can tell it when to run
                     wordAnimate.pause();
+                    // store all animations so we can tell them all what to do later
                     animations.push(wordAnimate);
 
                 }
                 
+                // create the phrase timing animations
                 phraseTiming.forEach(function(phrase) {
                     movePhrase(phrase)
                 });
                 
+                // phrase animation function
                 function movePhrase(phrase) {
                     var elem = document.querySelector('#subtitles2');
                     var line = document.querySelector('#'+phrase.id);
@@ -242,21 +189,26 @@
                         iterations: 1,
                         fill: "forwards"
                     });
+                    // pause for playback later
                     phraseAnimate.pause();
+                    // push them all into the main animations array
                     animations.push(phraseAnimate);
                 }
 
             }
             
+            // call the create fuction now
             createSubtitle(textObj);
 
         }
+        // the app will call this function and we will need to determin what the UI should
+        // look like at a given moment in time with the fps converted into a time in miliseconds
         var curPos = 0;
         function renderNextFrame() {
             curPos = 1000/fps + curPos;
-            console.log('position ', curPos);
             // This is how you tell it to go to a specific time
             animations.forEach((w) => {
+                // this makes the animation jump to this specific time in the overall animation
                 w.currentTime = curPos;
             });
         }
