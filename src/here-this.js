@@ -1,4 +1,6 @@
 const fs  = require('fs');
+const process = require('process');
+const os = require('os');
 const path = require('path');
 
 module.exports = {
@@ -28,9 +30,20 @@ class Chapter {
         this.textXmlFile = '';
     }
 }
+
+function getDefaultDataDirectory() {
+    switch(process.platform) {
+        case 'win32':
+            return 'C:/ProgramData/SIL/HearThis/';
+        case 'darwin':
+        default:
+            return `${os.homedir()}/hereThisProjects/`;
+    }
+}
+
 const DEFAULT_XML_NAME = 'info.xml';
-// const DEFAULT_DATA_DIR = 'C:/ProgramData/SIL/HearThis/';
-const DEFAULT_DATA_DIR = '/home/hahnkev/hereThisProjects/';
+const DEFAULT_DATA_DIR = getDefaultDataDirectory();
+
 function getProjectStructure() {
     try {
         let projectNames = fs.readdirSync(DEFAULT_DATA_DIR);
