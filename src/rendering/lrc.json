@@ -1,195 +1,1295 @@
 [
     {
         "type": "caption",
-        "index": 1,
-        "start": 1030,
-        "end": 6510,
-        "duration": 5480,
-        "content": "",
+        "index": 0,
+        "start": 0,
+        "end": 2300,
+        "duration": 2300,
+        "content": "Li Kalòcè̌ tatai theingǎ",
         "text": "",
         "words": [
             {
-                "word": "Blessed",
-                "start": 1030,
-                "end": 1760
+                "word": "Li",
+                "start": 0,
+                "end": 256
             },
             {
-                "word": "are",
-                "start": 1760,
-                "end": 2690
+                "word": "Kalòcè̌",
+                "start": 256,
+                "end": 1108
             },
             {
-                "word": "they",
-                "start": 2690,
-                "end": 3520
+                "word": "tatai",
+                "start": 1108,
+                "end": 1619
             },
             {
-                "word": "whose",
-                "start": 3520,
-                "end": 4270
-            },
-            {
-                "word": "ways",
-                "start": 4270,
-                "end": 4930
-            },
-            {
-                "word": "are",
-                "start": 4930,
-                "end": 5660
-            },
-            {
-                "word": "blameless,",
-                "start": 5660,
-                "end": 6510
+                "word": "theingǎ",
+                "start": 1619,
+                "end": 2300
             }
         ]
     },
     {
         "type": "caption",
         "index": 1,
-        "start": 6510,
-        "end": 13060,
-        "duration": 6550,
-        "content": "",
+        "start": 2300,
+        "end": 7800,
+        "duration": 5500,
+        "content": "Li Kalòcè̌ mè mwaǐ Pò̌lu tyanba Wein Kalòcè̌ ta-aòblonphao.",
         "text": "",
         "words": [
             {
-                "word": "who,",
-                "start": 6510,
-                "end": 7200
+                "word": "Li",
+                "start": 2300,
+                "end": 2546
             },
             {
-                "word": "walk",
-                "start": 7200,
-                "end": 7940
+                "word": "Kalòcè̌",
+                "start": 2546,
+                "end": 3367
             },
             {
-                "word": "according",
-                "start": 7940,
-                "end": 8590
+                "word": "mè",
+                "start": 3367,
+                "end": 3695
             },
             {
-                "word": "to",
-                "start": 8590,
-                "end": 9250
+                "word": "mwaǐ",
+                "start": 3695,
+                "end": 4188
             },
             {
-                "word": "the",
-                "start": 9250,
-                "end": 9940
+                "word": "Pò̌lu",
+                "start": 4188,
+                "end": 4763
             },
             {
-                "word": "law",
-                "start": 9940,
-                "end": 10610
+                "word": "tyanba",
+                "start": 4763,
+                "end": 5338
             },
             {
-                "word": "of",
-                "start": 10610,
-                "end": 11350
+                "word": "Wein",
+                "start": 5338,
+                "end": 5748
             },
             {
-                "word": "the",
-                "start": 11350,
-                "end": 12140
+                "word": "Kalòcè̌",
+                "start": 5748,
+                "end": 6569
             },
             {
-                "word": "Lord.",
-                "start": 12140,
-                "end": 13060
+                "word": "ta-aòblonphao.",
+                "start": 6569,
+                "end": 7800
             }
         ]
     },
     {
         "type": "caption",
-        "index": 1,
-        "start": 13060,
-        "end": 18080,
-        "duration": 5020,
-        "content": "",
+        "index": 2,
+        "start": 7800,
+        "end": 17300,
+        "duration": 9500,
+        "content": "Wein Kalòcè̌ ǔ mè aò bǎ Kǎn Asǐyǎ, Wein Ěphěsu amô̌nhtan dò aò dô̌ Rǒme tapain kalǎ.",
         "text": "",
         "words": [
             {
-                "word": "Blessed",
-                "start": 13060,
-                "end": 13710
+                "word": "Wein",
+                "start": 7800,
+                "end": 8270
             },
             {
-                "word": "are",
-                "start": 13710,
-                "end": 14420
+                "word": "Kalòcè̌",
+                "start": 8270,
+                "end": 9211
             },
             {
-                "word": "they",
-                "start": 14420,
-                "end": 15170
+                "word": "ǔ",
+                "start": 9211,
+                "end": 9493
             },
             {
-                "word": "who",
-                "start": 15170,
-                "end": 15870
+                "word": "mè",
+                "start": 9493,
+                "end": 9869
             },
             {
-                "word": "keep",
-                "start": 15870,
-                "end": 16570
+                "word": "aò",
+                "start": 9869,
+                "end": 10245
             },
             {
-                "word": "His",
-                "start": 16570,
-                "end": 17290
+                "word": "bǎ",
+                "start": 10245,
+                "end": 10621
             },
             {
-                "word": "statues",
-                "start": 17290,
-                "end": 18080
+                "word": "Kǎn",
+                "start": 10621,
+                "end": 11091
+            },
+            {
+                "word": "Asǐyǎ,",
+                "start": 11091,
+                "end": 11938
+            },
+            {
+                "word": "Wein",
+                "start": 11938,
+                "end": 12408
+            },
+            {
+                "word": "Ěphěsu",
+                "start": 12408,
+                "end": 13255
+            },
+            {
+                "word": "amô̌nhtan",
+                "start": 13255,
+                "end": 14290
+            },
+            {
+                "word": "dò",
+                "start": 14290,
+                "end": 14666
+            },
+            {
+                "word": "aò",
+                "start": 14666,
+                "end": 15042
+            },
+            {
+                "word": "dô̌",
+                "start": 15042,
+                "end": 15512
+            },
+            {
+                "word": "Rǒme",
+                "start": 15512,
+                "end": 16076
+            },
+            {
+                "word": "tapain",
+                "start": 16076,
+                "end": 16734
+            },
+            {
+                "word": "kalǎ.",
+                "start": 16734,
+                "end": 17300
             }
         ]
     },
     {
         "type": "caption",
-        "index": 1,
-        "start": 18080,
-        "end": 23900,
-        "duration": 5820,
-        "content": "",
+        "index": 3,
+        "start": 17300,
+        "end": 32300,
+        "duration": 15000,
+        "content": "Bǎ Ěpaphra laitaû̌ dô̌ Wein Ěphěsu dò nāhyû̌nba Pò̌lu tadaòhtulan khǎ, anǎn yû̌ htaû̌dò cein daòhtulanba saô dô̌ Wein Kalòcè̌ dò akaphrî̌ kacòn.",
         "text": "",
         "words": [
             {
-                "word": "and",
-                "start": 18080,
-                "end": 19000
+                "word": "Bǎ",
+                "start": 17300,
+                "end": 17657
             },
             {
-                "word": "seek",
-                "start": 19000,
-                "end": 19730
+                "word": "Ěpaphra",
+                "start": 17657,
+                "end": 18461
             },
             {
-                "word": "Him",
-                "start": 19730,
-                "end": 20420
+                "word": "laitaû̌",
+                "start": 18461,
+                "end": 19265
             },
             {
-                "word": "with",
-                "start": 20420,
-                "end": 21120
+                "word": "dô̌",
+                "start": 19265,
+                "end": 19711
             },
             {
-                "word": "all",
-                "start": 21120,
-                "end": 21820
+                "word": "Wein",
+                "start": 19711,
+                "end": 20157
             },
             {
-                "word": "their",
-                "start": 21820,
-                "end": 22550
+                "word": "Ěphěsu",
+                "start": 20157,
+                "end": 20961
             },
             {
-                "word": "heart.",
-                "start": 22550,
-                "end": 23900
+                "word": "dò",
+                "start": 20961,
+                "end": 21318
+            },
+            {
+                "word": "nāhyû̌nba",
+                "start": 21318,
+                "end": 22389
+            },
+            {
+                "word": "Pò̌lu",
+                "start": 22389,
+                "end": 23014
+            },
+            {
+                "word": "tadaòhtulan",
+                "start": 23014,
+                "end": 24175
+            },
+            {
+                "word": "khǎ,",
+                "start": 24175,
+                "end": 24711
+            },
+            {
+                "word": "anǎn",
+                "start": 24711,
+                "end": 25247
+            },
+            {
+                "word": "yû̌",
+                "start": 25247,
+                "end": 25693
+            },
+            {
+                "word": "htaû̌dò",
+                "start": 25693,
+                "end": 26586
+            },
+            {
+                "word": "cein",
+                "start": 26586,
+                "end": 27032
+            },
+            {
+                "word": "daòhtulanba",
+                "start": 27032,
+                "end": 28193
+            },
+            {
+                "word": "saô",
+                "start": 28193,
+                "end": 28639
+            },
+            {
+                "word": "dô̌",
+                "start": 28639,
+                "end": 29085
+            },
+            {
+                "word": "Wein",
+                "start": 29085,
+                "end": 29531
+            },
+            {
+                "word": "Kalòcè̌",
+                "start": 29531,
+                "end": 30424
+            },
+            {
+                "word": "dò",
+                "start": 30424,
+                "end": 30781
+            },
+            {
+                "word": "akaphrî̌",
+                "start": 30781,
+                "end": 31674
+            },
+            {
+                "word": "kacòn.",
+                "start": 31674,
+                "end": 32300
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 4,
+        "start": 32300,
+        "end": 36900,
+        "duration": 4600,
+        "content": "Dò anǎnthû̌ yû̌ dô̌ Khrī Yesyǔ mè, mwaǐ anǎnthû̌ Tadau.",
+        "text": "",
+        "words": [
+            {
+                "word": "Dò",
+                "start": 32300,
+                "end": 32579
+            },
+            {
+                "word": "anǎnthû̌",
+                "start": 32579,
+                "end": 33346
+            },
+            {
+                "word": "yû̌",
+                "start": 33346,
+                "end": 33694
+            },
+            {
+                "word": "dô̌",
+                "start": 33694,
+                "end": 34042
+            },
+            {
+                "word": "Khrī",
+                "start": 34042,
+                "end": 34460
+            },
+            {
+                "word": "Yesyǔ",
+                "start": 34460,
+                "end": 34948
+            },
+            {
+                "word": "mè,",
+                "start": 34948,
+                "end": 35296
+            },
+            {
+                "word": "mwaǐ",
+                "start": 35296,
+                "end": 35714
+            },
+            {
+                "word": "anǎnthû̌",
+                "start": 35714,
+                "end": 36481
+            },
+            {
+                "word": "Tadau.",
+                "start": 36481,
+                "end": 36900
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 5,
+        "start": 36900,
+        "end": 49400,
+        "duration": 12500,
+        "content": "Bǎnu sô̌nkhǎ kaǔ nu, pradaòhtulan thwanlǔ ta dô̌ ahtandidaò dò Pò̌lu atadaòhtulan thwanlǔ lahan laitaû̌ dô̌ Wein Kalòcè̌ ta-aòblon.",
+        "text": "",
+        "words": [
+            {
+                "word": "Bǎnu",
+                "start": 36900,
+                "end": 37407
+            },
+            {
+                "word": "sô̌nkhǎ",
+                "start": 37407,
+                "end": 38252
+            },
+            {
+                "word": "kaǔ",
+                "start": 38252,
+                "end": 38674
+            },
+            {
+                "word": "nu,",
+                "start": 38674,
+                "end": 39012
+            },
+            {
+                "word": "pradaòhtulan",
+                "start": 39012,
+                "end": 40194
+            },
+            {
+                "word": "thwanlǔ",
+                "start": 40194,
+                "end": 40954
+            },
+            {
+                "word": "ta",
+                "start": 40954,
+                "end": 41207
+            },
+            {
+                "word": "dô̌",
+                "start": 41207,
+                "end": 41629
+            },
+            {
+                "word": "ahtandidaò",
+                "start": 41629,
+                "end": 42643
+            },
+            {
+                "word": "dò",
+                "start": 42643,
+                "end": 42981
+            },
+            {
+                "word": "Pò̌lu",
+                "start": 42981,
+                "end": 43572
+            },
+            {
+                "word": "atadaòhtulan",
+                "start": 43572,
+                "end": 44754
+            },
+            {
+                "word": "thwanlǔ",
+                "start": 44754,
+                "end": 45514
+            },
+            {
+                "word": "lahan",
+                "start": 45514,
+                "end": 46021
+            },
+            {
+                "word": "laitaû̌",
+                "start": 46021,
+                "end": 46781
+            },
+            {
+                "word": "dô̌",
+                "start": 46781,
+                "end": 47203
+            },
+            {
+                "word": "Wein",
+                "start": 47203,
+                "end": 47625
+            },
+            {
+                "word": "Kalòcè̌",
+                "start": 47625,
+                "end": 48470
+            },
+            {
+                "word": "ta-aòblon.",
+                "start": 48470,
+                "end": 49400
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 6,
+        "start": 49400,
+        "end": 69600,
+        "duration": 20200,
+        "content": "Dò thwanlǔ tha-ǔ, “Cwaǐdò ka theingǎ da Bweca dò ka nî̌ba bábwaǐ tahtairaò́ angǎ nu, ba thabǎhtan yaò araû̌raû̌ dò macǔ tahtǒn bakyadò tadurîphei rǎ, pwè̌lǎn rǎ, ta-an ta-aò̌ rǎ dò takaru araû̌raû̌.”",
+        "text": "",
+        "words": [
+            {
+                "word": "Dò",
+                "start": 49400,
+                "end": 49753
+            },
+            {
+                "word": "thwanlǔ",
+                "start": 49753,
+                "end": 50547
+            },
+            {
+                "word": "tha-ǔ,",
+                "start": 50547,
+                "end": 51253
+            },
+            {
+                "word": "“Cwaǐdò",
+                "start": 51253,
+                "end": 52135
+            },
+            {
+                "word": "ka",
+                "start": 52135,
+                "end": 52400
+            },
+            {
+                "word": "theingǎ",
+                "start": 52400,
+                "end": 53194
+            },
+            {
+                "word": "da",
+                "start": 53194,
+                "end": 53459
+            },
+            {
+                "word": "Bweca",
+                "start": 53459,
+                "end": 53988
+            },
+            {
+                "word": "dò",
+                "start": 53988,
+                "end": 54341
+            },
+            {
+                "word": "ka",
+                "start": 54341,
+                "end": 54606
+            },
+            {
+                "word": "nî̌ba",
+                "start": 54606,
+                "end": 55223
+            },
+            {
+                "word": "bábwaǐ",
+                "start": 55223,
+                "end": 56017
+            },
+            {
+                "word": "tahtairaò́",
+                "start": 56017,
+                "end": 57076
+            },
+            {
+                "word": "angǎ",
+                "start": 57076,
+                "end": 57605
+            },
+            {
+                "word": "nu,",
+                "start": 57605,
+                "end": 57958
+            },
+            {
+                "word": "ba",
+                "start": 57958,
+                "end": 58223
+            },
+            {
+                "word": "thabǎhtan",
+                "start": 58223,
+                "end": 59193
+            },
+            {
+                "word": "yaò",
+                "start": 59193,
+                "end": 59634
+            },
+            {
+                "word": "araû̌raû̌",
+                "start": 59634,
+                "end": 60693
+            },
+            {
+                "word": "dò",
+                "start": 60693,
+                "end": 61046
+            },
+            {
+                "word": "macǔ",
+                "start": 61046,
+                "end": 61575
+            },
+            {
+                "word": "tahtǒn",
+                "start": 61575,
+                "end": 62281
+            },
+            {
+                "word": "bakyadò",
+                "start": 62281,
+                "end": 63075
+            },
+            {
+                "word": "tadurîphei",
+                "start": 63075,
+                "end": 64134
+            },
+            {
+                "word": "rǎ,",
+                "start": 64134,
+                "end": 64575
+            },
+            {
+                "word": "pwè̌lǎn",
+                "start": 64575,
+                "end": 65457
+            },
+            {
+                "word": "rǎ,",
+                "start": 65457,
+                "end": 65898
+            },
+            {
+                "word": "ta-an",
+                "start": 65898,
+                "end": 66427
+            },
+            {
+                "word": "ta-aò̌",
+                "start": 66427,
+                "end": 67133
+            },
+            {
+                "word": "rǎ",
+                "start": 67133,
+                "end": 67486
+            },
+            {
+                "word": "dò",
+                "start": 67486,
+                "end": 67839
+            },
+            {
+                "word": "takaru",
+                "start": 67839,
+                "end": 68456
+            },
+            {
+                "word": "araû̌raû̌.”",
+                "start": 68456,
+                "end": 69600
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 7,
+        "start": 69600,
+        "end": 75800,
+        "duration": 6200,
+        "content": "Dò mwaǐdô̌ tathwanlǔ ǔkaǔ akhaucǎ mè magwû̌n anǎnthû̌ tayû̌ da.",
+        "text": "",
+        "words": [
+            {
+                "word": "Dò",
+                "start": 69600,
+                "end": 69931
+            },
+            {
+                "word": "mwaǐdô̌",
+                "start": 69931,
+                "end": 70758
+            },
+            {
+                "word": "tathwanlǔ",
+                "start": 70758,
+                "end": 71667
+            },
+            {
+                "word": "ǔkaǔ",
+                "start": 71667,
+                "end": 72246
+            },
+            {
+                "word": "akhaucǎ",
+                "start": 72246,
+                "end": 72990
+            },
+            {
+                "word": "mè",
+                "start": 72990,
+                "end": 73321
+            },
+            {
+                "word": "magwû̌n",
+                "start": 73321,
+                "end": 74065
+            },
+            {
+                "word": "anǎnthû̌",
+                "start": 74065,
+                "end": 74974
+            },
+            {
+                "word": "tayû̌",
+                "start": 74974,
+                "end": 75553
+            },
+            {
+                "word": "da.",
+                "start": 75553,
+                "end": 75800
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 8,
+        "start": 75800,
+        "end": 91900,
+        "duration": 16100.000000000002,
+        "content": "Akhaucǎ, Pò̌lu taiba anǎnthû̌ dô̌ Bweca phaokhaǔ Khrī Yesyǔ mè, mwaǐ Bweca yònyǎn, a-aò rî̌kaò̌ dò ta-baòlan pǔ raû̌ dò htǔkhau dô̌ ta pǔ raû̌ kakhau arîkaǐ.",
+        "text": "",
+        "words": [
+            {
+                "word": "Akhaucǎ,",
+                "start": 75800,
+                "end": 76680
+            },
+            {
+                "word": "Pò̌lu",
+                "start": 76680,
+                "end": 77296
+            },
+            {
+                "word": "taiba",
+                "start": 77296,
+                "end": 77824
+            },
+            {
+                "word": "anǎnthû̌",
+                "start": 77824,
+                "end": 78792
+            },
+            {
+                "word": "dô̌",
+                "start": 78792,
+                "end": 79232
+            },
+            {
+                "word": "Bweca",
+                "start": 79232,
+                "end": 79760
+            },
+            {
+                "word": "phaokhaǔ",
+                "start": 79760,
+                "end": 80640
+            },
+            {
+                "word": "Khrī",
+                "start": 80640,
+                "end": 81168
+            },
+            {
+                "word": "Yesyǔ",
+                "start": 81168,
+                "end": 81784
+            },
+            {
+                "word": "mè,",
+                "start": 81784,
+                "end": 82224
+            },
+            {
+                "word": "mwaǐ",
+                "start": 82224,
+                "end": 82752
+            },
+            {
+                "word": "Bweca",
+                "start": 82752,
+                "end": 83280
+            },
+            {
+                "word": "yònyǎn,",
+                "start": 83280,
+                "end": 84160
+            },
+            {
+                "word": "a-aò",
+                "start": 84160,
+                "end": 84688
+            },
+            {
+                "word": "rî̌kaò̌",
+                "start": 84688,
+                "end": 85568
+            },
+            {
+                "word": "dò",
+                "start": 85568,
+                "end": 85920
+            },
+            {
+                "word": "ta-baòlan",
+                "start": 85920,
+                "end": 86888
+            },
+            {
+                "word": "pǔ",
+                "start": 86888,
+                "end": 87240
+            },
+            {
+                "word": "raû̌",
+                "start": 87240,
+                "end": 87768
+            },
+            {
+                "word": "dò",
+                "start": 87768,
+                "end": 88120
+            },
+            {
+                "word": "htǔkhau",
+                "start": 88120,
+                "end": 88912
+            },
+            {
+                "word": "dô̌",
+                "start": 88912,
+                "end": 89352
+            },
+            {
+                "word": "ta",
+                "start": 89352,
+                "end": 89616
+            },
+            {
+                "word": "pǔ",
+                "start": 89616,
+                "end": 89968
+            },
+            {
+                "word": "raû̌",
+                "start": 89968,
+                "end": 90496
+            },
+            {
+                "word": "kakhau",
+                "start": 90496,
+                "end": 91112
+            },
+            {
+                "word": "arîkaǐ.",
+                "start": 91112,
+                "end": 91900
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 9,
+        "start": 91900,
+        "end": 102300,
+        "duration": 10400,
+        "content": "Dò Bweca daûlaô̌ atamapǐ takrautayaò araû̌raû̌ mwaǐdô̌ Khrī Yesyǔ thû̌ dò thamyû̌ncein akhaucǎ.",
+        "text": "",
+        "words": [
+            {
+                "word": "Dò",
+                "start": 91900,
+                "end": 92278
+            },
+            {
+                "word": "Bweca",
+                "start": 92278,
+                "end": 92845
+            },
+            {
+                "word": "daûlaô̌",
+                "start": 92845,
+                "end": 93790
+            },
+            {
+                "word": "atamapǐ",
+                "start": 93790,
+                "end": 94641
+            },
+            {
+                "word": "takrautayaò",
+                "start": 94641,
+                "end": 95870
+            },
+            {
+                "word": "araû̌raû̌",
+                "start": 95870,
+                "end": 97005
+            },
+            {
+                "word": "mwaǐdô̌",
+                "start": 97005,
+                "end": 97950
+            },
+            {
+                "word": "Khrī",
+                "start": 97950,
+                "end": 98517
+            },
+            {
+                "word": "Yesyǔ",
+                "start": 98517,
+                "end": 99179
+            },
+            {
+                "word": "thû̌",
+                "start": 99179,
+                "end": 99746
+            },
+            {
+                "word": "dò",
+                "start": 99746,
+                "end": 100124
+            },
+            {
+                "word": "thamyû̌ncein",
+                "start": 100124,
+                "end": 101448
+            },
+            {
+                "word": "akhaucǎ.",
+                "start": 101448,
+                "end": 102300
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 10,
+        "start": 102300,
+        "end": 114500,
+        "duration": 12200,
+        "content": "Dò mwaǐdô̌ pa yû̌ Khrī Yesyǔ akhaucǎ, pa nî̌ba tahtairaò́ dò pa mapǐ da yaò araû̌ raû̌ dò cô̌ lo macǔ pè tahtǒn tadaû kǒ.",
+        "text": "",
+        "words": [
+            {
+                "word": "Dò",
+                "start": 102300,
+                "end": 102644
+            },
+            {
+                "word": "mwaǐdô̌",
+                "start": 102644,
+                "end": 103503
+            },
+            {
+                "word": "pa",
+                "start": 103503,
+                "end": 103761
+            },
+            {
+                "word": "yû̌",
+                "start": 103761,
+                "end": 104191
+            },
+            {
+                "word": "Khrī",
+                "start": 104191,
+                "end": 104706
+            },
+            {
+                "word": "Yesyǔ",
+                "start": 104706,
+                "end": 105307
+            },
+            {
+                "word": "akhaucǎ,",
+                "start": 105307,
+                "end": 106166
+            },
+            {
+                "word": "pa",
+                "start": 106166,
+                "end": 106424
+            },
+            {
+                "word": "nî̌ba",
+                "start": 106424,
+                "end": 107025
+            },
+            {
+                "word": "tahtairaò́",
+                "start": 107025,
+                "end": 108056
+            },
+            {
+                "word": "dò",
+                "start": 108056,
+                "end": 108400
+            },
+            {
+                "word": "pa",
+                "start": 108400,
+                "end": 108658
+            },
+            {
+                "word": "mapǐ",
+                "start": 108658,
+                "end": 109173
+            },
+            {
+                "word": "da",
+                "start": 109173,
+                "end": 109431
+            },
+            {
+                "word": "yaò",
+                "start": 109431,
+                "end": 109861
+            },
+            {
+                "word": "araû̌",
+                "start": 109861,
+                "end": 110462
+            },
+            {
+                "word": "raû̌",
+                "start": 110462,
+                "end": 110977
+            },
+            {
+                "word": "dò",
+                "start": 110977,
+                "end": 111321
+            },
+            {
+                "word": "cô̌",
+                "start": 111321,
+                "end": 111751
+            },
+            {
+                "word": "lo",
+                "start": 111751,
+                "end": 112009
+            },
+            {
+                "word": "macǔ",
+                "start": 112009,
+                "end": 112524
+            },
+            {
+                "word": "pè",
+                "start": 112524,
+                "end": 112868
+            },
+            {
+                "word": "tahtǒn",
+                "start": 112868,
+                "end": 113555
+            },
+            {
+                "word": "tadaû",
+                "start": 113555,
+                "end": 114156
+            },
+            {
+                "word": "kǒ.",
+                "start": 114156,
+                "end": 114500
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 11,
+        "start": 114500,
+        "end": 127000,
+        "duration": 12500,
+        "content": "Dò sankǎn anǎnthû̌ dô̌ tayû̌ kaba cein leǐn dò kaba swaǐrain pradaòhtulan thwanlǔ ta dô̌ ahtandidaò dò Pò̌lu tathwanlǔ ǔkaǔ.",
+        "text": "",
+        "words": [
+            {
+                "word": "Dò",
+                "start": 114500,
+                "end": 114852
+            },
+            {
+                "word": "sankǎn",
+                "start": 114852,
+                "end": 115556
+            },
+            {
+                "word": "anǎnthû̌",
+                "start": 115556,
+                "end": 116524
+            },
+            {
+                "word": "dô̌",
+                "start": 116524,
+                "end": 116964
+            },
+            {
+                "word": "tayû̌",
+                "start": 116964,
+                "end": 117580
+            },
+            {
+                "word": "kaba",
+                "start": 117580,
+                "end": 118020
+            },
+            {
+                "word": "cein",
+                "start": 118020,
+                "end": 118460
+            },
+            {
+                "word": "leǐn",
+                "start": 118460,
+                "end": 118988
+            },
+            {
+                "word": "dò",
+                "start": 118988,
+                "end": 119340
+            },
+            {
+                "word": "kaba",
+                "start": 119340,
+                "end": 119780
+            },
+            {
+                "word": "swaǐrain",
+                "start": 119780,
+                "end": 120660
+            },
+            {
+                "word": "pradaòhtulan",
+                "start": 120660,
+                "end": 121892
+            },
+            {
+                "word": "thwanlǔ",
+                "start": 121892,
+                "end": 122684
+            },
+            {
+                "word": "ta",
+                "start": 122684,
+                "end": 122948
+            },
+            {
+                "word": "dô̌",
+                "start": 122948,
+                "end": 123388
+            },
+            {
+                "word": "ahtandidaò",
+                "start": 123388,
+                "end": 124444
+            },
+            {
+                "word": "dò",
+                "start": 124444,
+                "end": 124796
+            },
+            {
+                "word": "Pò̌lu",
+                "start": 124796,
+                "end": 125412
+            },
+            {
+                "word": "tathwanlǔ",
+                "start": 125412,
+                "end": 126380
+            },
+            {
+                "word": "ǔkaǔ.",
+                "start": 126380,
+                "end": 127000
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 12,
+        "start": 127000,
+        "end": 136400,
+        "duration": 9400,
+        "content": "Dò sankǎn anǎnthû̌ dô̌ ta karu araû̌raû̌ dô̌ kaba aòmyû̌n dô̌ ta-aòkǎn athû̌ thamǎ arîkaǐ.",
+        "text": "",
+        "words": [
+            {
+                "word": "Dò",
+                "start": 127000,
+                "end": 127351
+            },
+            {
+                "word": "sankǎn",
+                "start": 127351,
+                "end": 128054
+            },
+            {
+                "word": "anǎnthû̌",
+                "start": 128054,
+                "end": 129020
+            },
+            {
+                "word": "dô̌",
+                "start": 129020,
+                "end": 129459
+            },
+            {
+                "word": "ta",
+                "start": 129459,
+                "end": 129723
+            },
+            {
+                "word": "karu",
+                "start": 129723,
+                "end": 130162
+            },
+            {
+                "word": "araû̌raû̌",
+                "start": 130162,
+                "end": 131216
+            },
+            {
+                "word": "dô̌",
+                "start": 131216,
+                "end": 131655
+            },
+            {
+                "word": "kaba",
+                "start": 131655,
+                "end": 132094
+            },
+            {
+                "word": "aòmyû̌n",
+                "start": 132094,
+                "end": 132973
+            },
+            {
+                "word": "dô̌",
+                "start": 132973,
+                "end": 133412
+            },
+            {
+                "word": "ta-aòkǎn",
+                "start": 133412,
+                "end": 134378
+            },
+            {
+                "word": "athû̌",
+                "start": 134378,
+                "end": 134993
+            },
+            {
+                "word": "thamǎ",
+                "start": 134993,
+                "end": 135608
+            },
+            {
+                "word": "arîkaǐ.",
+                "start": 135608,
+                "end": 136400
+            }
+        ]
+    },
+    {
+        "type": "caption",
+        "index": 13,
+        "start": 136400,
+        "end": 139700,
+        "duration": 3300,
+        "content": "Li Kalòcè̌ atapǎnphá",
+        "text": "",
+        "words": [
+            {
+                "word": "Li",
+                "start": 136400,
+                "end": 136813
+            },
+            {
+                "word": "Kalòcè̌",
+                "start": 136813,
+                "end": 138188
+            },
+            {
+                "word": "atapǎnphá",
+                "start": 138188,
+                "end": 139700
             }
         ]
     }

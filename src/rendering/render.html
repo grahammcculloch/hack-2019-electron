@@ -31,13 +31,15 @@
             padding-top: 175px;
             font-family: CAPTION_FONT_FAMILY;
             font-weight: 300;
-            margin: 0px 56px;
-            width: 608px;
+            margin: 0px 46px;
+            width: 628px;
             position: absolute;
         }
         
         .karaoke-caption .phrase {
-            padding: 15px 0;
+            padding: 15px 10px;
+            border-radius: 10px;
+            line-height: 40px;
         }
 
         .karaoke-caption .words {
@@ -131,7 +133,7 @@
                     });
                     
                     // this makes the phrase timeing easier for later
-                    phraseTiming.push({id: "p"+i, end: line.end});
+                    phraseTiming.push({id: "p"+i, start:line.start, end: line.end});
                     // concat the lines together with all words inside
                     lyrics += "<div class='phrase' id='p" + i + "'>" + text + "</div>";
                     i++;
@@ -181,8 +183,12 @@
                     var nextPos = line.clientHeight;
                     linePos -= nextPos; 
                     var phraseAnimate = elem.animate([
-                        { transform: 'translateY('+curPos+'px)' }, 
-                        { transform: 'translateY('+(curPos - nextPos)+'px)' }
+                        { 
+                            transform: 'translateY('+curPos+'px)'
+                        }, 
+                        { 
+                            transform: 'translateY('+(curPos - nextPos)+'px)'
+                        }
                     ], {
                         duration: 500,
                         delay: phrase.end,
@@ -193,6 +199,40 @@
                     phraseAnimate.pause();
                     // push them all into the main animations array
                     animations.push(phraseAnimate);
+                    var phraseBackgroundOn = line.animate([
+                        { 
+                            background: 'rgba(255,255,255,0)'
+                        }, 
+                        { 
+                            background: 'rgba(255,255,255,1)'
+                        }
+                    ], {
+                        duration: 500,
+                        delay: phrase.start,
+                        iterations: 1,
+                        fill: "forwards"
+                    });
+                    // pause for playback later
+                    phraseBackgroundOn.pause();
+                    // push them all into the main animations array
+                    animations.push(phraseBackgroundOn);
+                    var phraseBackgroundOff = line.animate([
+                        { 
+                            background: 'rgba(255,255,255,1)'
+                        }, 
+                        { 
+                            background: 'rgba(255,255,255,0)'
+                        }
+                    ], {
+                        duration: 500,
+                        delay: phrase.end,
+                        iterations: 1,
+                        fill: "forwards"
+                    });
+                    // pause for playback later
+                    phraseBackgroundOff.pause();
+                    // push them all into the main animations array
+                    animations.push(phraseBackgroundOff);
                 }
 
             }
@@ -222,7 +262,6 @@
     <!-- <p>hello world time: <span id="time"></span></p>
     <div style="height: 100px; width: 100px; background-color: red"></div> -->
     <div id="imgParent">
-        <div id="backgroundHelper"></div>
         <div class="line subs karaoke-caption" id="subtitles2"></div>
     </div>
 
