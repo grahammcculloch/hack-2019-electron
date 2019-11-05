@@ -12,7 +12,7 @@ const fallbackFont = 'Helvetica Neue, Helvetica, Arial, sans-serif';
 
 // (async function mainIIFE() {
 //     try {
-//         await render('./src/rendering/lrc.json', './src/rendering/testBG.jpg', true, 'Kayan Unicode');
+//         await render('./src/rendering/lrc.json', './src/rendering/testBG.jpg', false, 'Kayan Unicode');
 //     } catch (error) {
 //         console.error(error);
 //     }
@@ -20,7 +20,10 @@ const fallbackFont = 'Helvetica Neue, Helvetica, Arial, sans-serif';
 
 
 async function render(timingFilePath, bgImagePath, testOnly, font) {
-    let fps = 30;
+    let timings = fs.readFileSync(timingFilePath, { encoding: 'utf-8' });
+    let timingObj = JSON.parse(timings);
+    let duration = timingObj[timingObj.length-1].end/1000;
+    let fps = 15;
     // let ffmpegLocation = await setupFfmpeg();
     let htmlContent = await getHtmlPage(timingFilePath, bgImagePath, fps, font);
     fs.writeFileSync('renderedAnimation.html', htmlContent);
@@ -35,9 +38,12 @@ async function render(timingFilePath, bgImagePath, testOnly, font) {
         logEachFrame: true,
         output: outputLocation,
         fps,
-        frames: fps * 5, // 5 seconds at 60 fps
+        frames: Math.round(fps * duration), // duration in seconds at fps (30)
         prepare: async function (browser, page) {
-            await page.setViewport({ width: 720, height: 480 });
+            await page.setViewport({ 
+                width: 720, 
+                height: 480
+            });
             await page.setContent(htmlContent);
         },
         render: async (browser, page, frame) => {
