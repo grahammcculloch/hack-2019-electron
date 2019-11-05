@@ -8,10 +8,13 @@ const DataURI = require('datauri').promise;
 
 module.exports = { render };
 
-async function render(lrcFilePath, bgImagePath, testOnly) {
+const fontPlaceholder = 'CAPTION_FONT_FAMILY';
+const fallbackFont = 'Helvetica Neue, Helvetica, Arial, sans-serif';
+
+async function render(lrcFilePath, bgImagePath, testOnly, font) {
     let fps = 30;
     // let ffmpegLocation = await setupFfmpeg();
-    let htmlContent = await getHtmlPage(lrcFilePath, bgImagePath, fps);
+    let htmlContent = await getHtmlPage(lrcFilePath, bgImagePath, fps, font);
     fs.writeFileSync('renderedAnimation.html', htmlContent);
     if (testOnly) return;
     
@@ -39,7 +42,7 @@ async function render(lrcFilePath, bgImagePath, testOnly) {
     return outputLocation;
 }
 
-async function getHtmlPage(lrcFilePath, bgImagePath, fps) {
+async function getHtmlPage(lrcFilePath, bgImagePath, fps, font) {
     let htmlContent = fs.readFileSync('./src/rendering/render.html', { encoding: 'utf-8' });
     let lrcContent = fs.readFileSync(lrcFilePath, { encoding: 'utf-8' });
 
@@ -57,5 +60,5 @@ async function getHtmlPage(lrcFilePath, bgImagePath, fps) {
             window.afterLoadKar(vttContent, backgroundDataUri, fps);
         }
     </script>
-    `);
+    `).replace(fontPlaceholder, font || fallbackFont);
 }

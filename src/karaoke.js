@@ -9,10 +9,9 @@ module.exports = {
 };
 
 async function execute(hereThisFolder, backgroundFile, font, outputFile) {
-  // TODO: Make use of the 'font' argument
   try {
     let lrcFilePath = await getHereThisInLyricFormat(hereThisFolder, 'lrc', true);
-    let framesFolder = await renderFrames.render(lrcFilePath, backgroundFile);
+    let framesFolder = await renderFrames.render(lrcFilePath, backgroundFile, font);
     let videoPath = await renderVideo.renderToVideo(
       framesFolder,
       hereThisFolder,
