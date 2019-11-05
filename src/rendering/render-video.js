@@ -14,12 +14,14 @@ module.exports = {
 async function renderToVideo(imagesFolder, audioFolder, outputFile) {
     let ffmpegFolder = await setupFfmpeg();
     let ffmpegPath = path.join(ffmpegFolder, 'ffmpeg');
-    await bbkFfmpeg({
+    const args = {
         images:imagesFolder,
         audio: audioFolder,
         output: outputFile,
         ffmpegPath: ffmpegPath
-    });
+    };
+    console.log('calling bkkFfmpeg', args);
+    await bbkFfmpeg(args);
     // console.log(stdout);
 }
 

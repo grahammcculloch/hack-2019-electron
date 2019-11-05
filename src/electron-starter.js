@@ -1,7 +1,7 @@
 const electron = require('electron');
 const fontList = require('font-list');
 const karaoke = require('./karaoke');
-const { getProjectStructure } = require('./here-this');
+const { getProjectStructure } = require('./hear-this');
 // Module to control application life.
 const { app, ipcMain, shell } = electron;
 // Module to create native browser window.
@@ -92,7 +92,7 @@ function handleSubmission() {
     const retArgs =
       typeof result === 'string'
         ? { outputFile: result }
-        : { error: { message: result.message } };
+        : { error: { message: result ? result.toString() : 'Unknown error' } };
     console.log('Command line process finished', retArgs);
     event.sender.send('did-finish-conversion', retArgs);
   });
@@ -116,6 +116,18 @@ function handleSubmission() {
   });
 }
 
+function installReactDevTools() {
+  try {
+    // Ref: https://electronjs.org/docs/tutorial/devtools-extension
+    // TODO: The following path is user-specific!!
+    const reactDevToolsExtensionPath =
+      'C:UsersadminAppDataLocalGoogleChromeUser DataDefaultExtensions\fmkadmapgofadopljbjfkapdkoienihi\4.2.0_0';
+    // BrowserWindow.addDevToolsExtension(reactDevToolsExtensionPath);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -125,6 +137,7 @@ app.on('ready', () => {
   handleGetProjects();
   handleGetFonts();
   handleOpenOutputFolder();
+  installReactDevTools();
 });
 
 // Quit when all windows are closed.

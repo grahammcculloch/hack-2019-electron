@@ -1,8 +1,6 @@
 const { record } = require('./record-frames');
 const fs = require('fs');
-const path = require('path');
-const process = require('process');
-const vttToJson = require('vtt-json');
+const tempy = require('tempy');
 const DataURI = require('datauri').promise;
 
 module.exports = { render };
@@ -18,7 +16,6 @@ const fallbackFont = 'Helvetica Neue, Helvetica, Arial, sans-serif';
 //     }
 // })();
 
-
 async function render(timingFilePath, bgImagePath, testOnly, font) {
     let timings = fs.readFileSync(timingFilePath, { encoding: 'utf-8' });
     let timingObj = JSON.parse(timings);
@@ -26,10 +23,9 @@ async function render(timingFilePath, bgImagePath, testOnly, font) {
     let fps = 15;
     // let ffmpegLocation = await setupFfmpeg();
     let htmlContent = await getHtmlPage(timingFilePath, bgImagePath, fps, font);
-    fs.writeFileSync('renderedAnimation.html', htmlContent);
-    if (testOnly) return;
-    
-    let outputLocation = fs.mkdtempSync('kar');
+    // fs.writeFileSync('renderedAnimation.html', htmlContent);
+
+    let outputLocation = tempy.directory();
 
     await record({
         browser: null, // Optional: a puppeteer Browser instance,
