@@ -50,7 +50,7 @@ class Accordion extends React.PureComponent {
               </H3>
               {stepStatus[index] ? <Icon icon='tick-circle' /> : null}
             </div>
-            <Collapse isOpen={index === currentCardIndex}>
+            <Collapse isOpen={index === currentCardIndex} keepChildrenMounted>
               <p>{card.description}</p>
               {card.content}
               <ActionButton

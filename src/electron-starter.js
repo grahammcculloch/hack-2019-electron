@@ -1,4 +1,5 @@
 const electron = require('electron');
+const fontList = require('font-list');
 const karaoke = require('./karaoke');
 const { getProjectStructure } = require('./here-this');
 // Module to control application life.
@@ -45,6 +46,24 @@ function createWindow() {
   });
 }
 
+function handleGetFonts() {
+  ipcMain.on('did-start-getfonts', async event => {
+    console.log('Getting system fonts');
+    fontList
+      .getFonts()
+      .then(fonts => {
+        event.sender.send(
+          'did-finish-getfonts',
+          // Font names with spaces are wrapped in quotation marks
+          fonts.map(font => font.replace(/^"|"$/g, '')).sort(),
+        );
+      })
+      .catch(err => {
+        event.sender.send('did-finish-getfonts', err);
+      });
+  });
+}
+
 function handleGetProjects() {
   ipcMain.on('did-start-getprojectstructure', async event => {
     console.log('Getting project structure');
@@ -62,10 +81,11 @@ function handleOpenOutputFolder() {
 function handleSubmission() {
   ipcMain.on('did-start-conversion', async (event, args) => {
     console.log('Starting command line', args);
-    const { hearThisFolder, backgroundFile, outputFile } = args;
+    const { hearThisFolder, backgroundFile, font, outputFile } = args;
     let result = await karaoke.execute(
       hearThisFolder,
       backgroundFile,
+      font,
       outputFile,
     );
 
@@ -103,6 +123,7 @@ app.on('ready', () => {
   createWindow();
   handleSubmission();
   handleGetProjects();
+  handleGetFonts();
   handleOpenOutputFolder();
 });
 

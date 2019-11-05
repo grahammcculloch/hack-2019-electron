@@ -4,12 +4,14 @@ import TextAndAudioCard from './TextAndAudioCard';
 // import TimingCard from './TimingCard';
 import BackgroundCard from './BackgroundCard';
 import OutputCard from './OutputCard';
+import FontCard from './FontCard';
 
 export {
   TextAndAudioCard,
   // TimingCard,
   BackgroundCard,
   OutputCard,
+  FontCard,
 };
 
 export const cards = [
@@ -31,6 +33,12 @@ export const cards = [
     description:
       'Then select a background image or video that will be used as the background of the generated video',
     content: <BackgroundCard />,
+  },
+  {
+    title: 'Font',
+    description:
+      'Then select the font to use for the text in the generated video',
+    content: <FontCard />,
   },
   {
     title: 'Output',

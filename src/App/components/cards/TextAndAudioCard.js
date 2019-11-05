@@ -26,9 +26,6 @@ class TextAndAudioCard extends React.PureComponent {
         selectedChapter: noSelection,
       });
     });
-  }
-
-  componentDidMount() {
     ipcRenderer.send('did-start-getprojectstructure');
   }
 

@@ -11,6 +11,9 @@ class Store {
   @observable 
   backgroundFile = '';
 
+  @observable
+  font = '';
+
   @observable 
   outputFile = '';
 
@@ -33,6 +36,7 @@ class Store {
       !!this.hearThisFolder,
       // !!this.timingFile,
       !!this.backgroundFile,
+      !!this.font,
       !!this.outputFile,
     ];
   }
@@ -45,7 +49,6 @@ class Store {
 
   @action.bound
   setHearThisFolder(folder) {
-    console.log('Setting hear this folder', folder);
     this.hearThisFolder = folder;
   }
 
@@ -58,6 +61,11 @@ class Store {
   setBackgroundFile(file) {
     this.backgroundFile = file;
   }
+  
+  @action.bound
+  setFont(font) {
+    this.font = font;
+  }
 
   @action.bound
   setOutputFile(file) {
@@ -66,7 +74,7 @@ class Store {
 
   @computed
   get allValidInputs() {
-    return this.hearThisFolder && /* this.timingFile && */ this.backgroundFile && this.outputFile;
+    return this.hearThisFolder && /* this.timingFile && */ this.backgroundFile && this.font && this.outputFile;
   }
 }
 

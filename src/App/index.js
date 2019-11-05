@@ -51,10 +51,11 @@ class App extends React.PureComponent {
 
   onStart = () => {
     this.setState({ status: AppStatus.processing }, () => {
-      const { hearThisFolder, backgroundFile, outputFile } = this.props.store;
+      const { hearThisFolder, backgroundFile, font, outputFile } = this.props.store;
       const args = {
         hearThisFolder,
         backgroundFile,
+        font,
         outputFile,
       };
       console.log('Requesting processing', args);
