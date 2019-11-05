@@ -8,12 +8,20 @@ module.exports = { render };
 const fontPlaceholder = 'CAPTION_FONT_FAMILY';
 const fallbackFont = 'Helvetica Neue, Helvetica, Arial, sans-serif';
 
+// (async function mainIIFE() {
+//     try {
+//         await render('./src/rendering/lrc.json', './src/rendering/testBG.jpg', true, 'Kayan Unicode');
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
+
 async function render(timingFilePath, bgImagePath, font) {
     let fps = 30;
     // let ffmpegLocation = await setupFfmpeg();
     let htmlContent = await getHtmlPage(timingFilePath, bgImagePath, fps, font);
     // fs.writeFileSync('renderedAnimation.html', htmlContent);
-    
+
     let outputLocation = tempy.directory();
 
     await record({
@@ -41,7 +49,6 @@ async function render(timingFilePath, bgImagePath, font) {
 async function getHtmlPage(timingFilePath, bgImagePath, fps, font) {
     let htmlContent = fs.readFileSync('./src/rendering/render.html', { encoding: 'utf-8' });
     let timings = fs.readFileSync(timingFilePath, { encoding: 'utf-8' });
-
     let backgroundDataUri = null;
     if (bgImagePath) {
         backgroundDataUri = await DataURI(bgImagePath);
@@ -52,7 +59,7 @@ async function getHtmlPage(timingFilePath, bgImagePath, fps, font) {
         let timing = ${timings};
         let backgroundDataUri = '${backgroundDataUri}';
         window.onload = function () {
-            window.afterLoadKar(timings, backgroundDataUri, fps);
+            window.afterLoadKar(timing, backgroundDataUri, fps);
         }
     </script>
     `).replace(fontPlaceholder, font || fallbackFont);
