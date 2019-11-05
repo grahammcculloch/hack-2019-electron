@@ -16,7 +16,7 @@ const fallbackFont = 'Helvetica Neue, Helvetica, Arial, sans-serif';
 //     }
 // })();
 
-async function render(timingFilePath, bgImagePath, testOnly, font) {
+async function render(timingFilePath, bgImagePath, font) {
     let timings = fs.readFileSync(timingFilePath, { encoding: 'utf-8' });
     let timingObj = JSON.parse(timings);
     let duration = timingObj[timingObj.length-1].end/1000;
