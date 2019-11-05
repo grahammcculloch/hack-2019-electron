@@ -1,5 +1,6 @@
 const { spawn } = require('child_process');
 const puppeteer = require('puppeteer');
+const path = require('path');
 
 module.exports.record = async function(options) {
   const browser = options.browser || (await puppeteer.launch());
@@ -19,8 +20,9 @@ module.exports.record = async function(options) {
       );
 
     await options.render(browser, page, i);
-    let fileName = 'frame_' + i + '.png';
-    let screenshot = await page.screenshot({ omitBackground: false, path: outLocation + '/' + fileName});
+    const paddedIndex = `${i}`.padStart(6, '0');
+    let fileName = `frame_${paddedIndex}.png`;
+    let screenshot = await page.screenshot({ omitBackground: false, path: path.join(outLocation, fileName)});
   }
   await browser.close();
 //   ffmpeg.stdin.end();

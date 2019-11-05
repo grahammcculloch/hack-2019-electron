@@ -5,20 +5,20 @@ const {setupFfmpeg} = require('../ffmpeg');
 
 module.exports = {
     getVtt,
-    getHereThisInLyricFormat
+    getHearThisInLyricFormat
 };
 
-const TMP = '/home/hahnkev/hereThisProject/ENT/Mark/1';
-const VTT_BINARY = process.platform == 'win32' ? 'convertHereThis.exe' : 'convertHereThis';
+const TMP = '/home/hahnkev/hearThisProject/ENT/Mark/1';
+const VTT_BINARY = process.platform == 'win32' ? 'convertHearThis.exe' : 'convertHearThis';
 const VTT_BINARY_PATH = path.join(process.cwd(), 'binaries', VTT_BINARY);
 async function getVtt(chapterPath) {
-    return getHereThisInLyricFormat(chapterPath, 'vtt');
+    return getHearThisInLyricFormat(chapterPath, 'vtt');
 }
 
-async function getHereThisInLyricFormat(chapterPath, format, splitOnWords) {
+async function getHearThisInLyricFormat(chapterPath, format, splitOnWords) {
     let outputFileName = 'tmp';
     let ffmpegPath = path.join(await setupFfmpeg(), 'ffmpeg');
-    let execCmd = `${VTT_BINARY_PATH} ${chapterPath} ${outputFileName} -f ${ffmpegPath} -o ${format} ${splitOnWords ? '-w' : ''}`;
+    let execCmd = `${VTT_BINARY_PATH} "${chapterPath}" ${outputFileName} -f "${ffmpegPath}" -o ${format} ${splitOnWords ? '-w' : ''}`;
     console.log('binary: ', execCmd);
     //todo this is  broken
     let result = shell.exec(execCmd);

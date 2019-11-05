@@ -1,30 +1,33 @@
-const { getHereThisInLyricFormat } = require('./vtt/vtt');
+const bbkTiming = require('bbk/lib/commands/timing').run;
 const renderFrames = require('./rendering/render-frames');
 const renderVideo = require('./rendering/render-video');
-const fs = require('fs');
+const tempy = require('tempy');
 const shell = require('shelljs');
 
 module.exports = {
   execute,
 };
 
-async function execute(hereThisFolder, backgroundFile, font, outputFile) {
+async function execute(hearThisFolder, backgroundFile, font, outputFile) {
   try {
-    let lrcFilePath = await getHereThisInLyricFormat(hereThisFolder, 'lrc', true);
-    let framesFolder = await renderFrames.render(lrcFilePath, backgroundFile, font);
-    let videoPath = await renderVideo.renderToVideo(
+    const outputJsFile = tempy.file({extension: 'js'});
+    await bbkTiming({input: `${hearThisFolder}/info.xml`, output: outputJsFile });
+    let framesFolder = await renderFrames.render(outputJsFile, backgroundFile, font);
+    console.log('Frames folder', framesFolder);
+    const result = await renderVideo.renderToVideo(
       framesFolder,
-      hereThisFolder,
+      hearThisFolder,
       outputFile,
     );
-    shell.rm('-rf', framesFolder);
-    return videoPath;
+    console.log('Result of renderToVideo', result);
+    // shell.rm('-rf', framesFolder);
+    return outputFile;
   } catch (err) {
     console.warn('Failed to generate karaoke file', err, typeof err);
     return err;
   }
 }
 
-// (function () {
-//     execute('/home/hahnkev/hereThisProjects/ENT/Mark/1', './src/rendering/bunny.jpeg');
-// })();
+(function () {
+    execute('C:\ProgramData\SIL\HearThis\ENT\Mark\1', 'C:\DigiServe\bible-karaoke\cross-blog_orig.jpg', 'Arial', 'output.mp4');
+})();

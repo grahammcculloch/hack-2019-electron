@@ -37,7 +37,7 @@ function getDefaultDataDirectory() {
             return 'C:/ProgramData/SIL/HearThis/';
         case 'darwin':
         default:
-            return `${os.homedir()}/hereThisProjects/`;
+            return `${os.homedir()}/hearThisProjects/`;
     }
 }
 

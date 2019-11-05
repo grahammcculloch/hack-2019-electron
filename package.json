@@ -1,9 +1,12 @@
 {
   "name": "hack-2019-electron",
+  "description": "Bible Karaoke",
+  "author": "DigiServe",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
     "electron": "^6.0.11",
+    "electron-builder": "^22.1.0",
     "foreman": "^3.0.1"
   },
   "dependencies": {
@@ -25,6 +28,7 @@
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0",
     "shelljs": "^0.8.3",
+    "tempy": "^0.3.0",
     "vtt-json": "^1.0.1"
   },
   "homepage": "./",
