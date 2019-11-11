@@ -2,6 +2,7 @@ const bbkTiming = require('bbk/lib/commands/timing').run;
 const renderFrames = require('./rendering/render-frames');
 const renderVideo = require('./rendering/render-video');
 const tempy = require('tempy');
+const path = require('path');
 const shell = require('shelljs');
 
 module.exports = {
@@ -11,9 +12,8 @@ module.exports = {
 async function execute(hearThisFolder, backgroundFile, font, outputFile) {
   try {
     const outputJsFile = tempy.file({extension: 'js'});
-    await bbkTiming({input: `${hearThisFolder}/info.xml`, output: outputJsFile });
+    await bbkTiming({input: path.join(hearThisFolder, 'info.xml'), output: outputJsFile });
     let framesFolder = await renderFrames.render(outputJsFile, backgroundFile, font);
-    console.log('Frames folder', framesFolder);
     const result = await renderVideo.renderToVideo(
       framesFolder,
       hearThisFolder,
@@ -27,7 +27,3 @@ async function execute(hearThisFolder, backgroundFile, font, outputFile) {
     return err;
   }
 }
-
-(function () {
-    execute('C:\ProgramData\SIL\HearThis\ENT\Mark\1', 'C:\DigiServe\bible-karaoke\cross-blog_orig.jpg', 'Arial', 'output.mp4');
-})();

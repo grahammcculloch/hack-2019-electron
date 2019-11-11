@@ -1,19 +1,17 @@
-const util = require('util');
 const path = require('path');
+const process = require('process');
 const bbkFfmpeg = require('bbk/lib/commands/ffmpeg').run;
-const exec = util.promisify(require('child_process').exec);
 const {setupFfmpeg} = require('../ffmpeg');
 
+const FFMPEG_EXE = process.platform == 'win32' ? 'ffmpeg.exe' : 'ffmpeg';
 
 module.exports = {
     renderToVideo
 };
-// (function (params) {
-//     renderToVideo('./output', 'audio', 'video.mp4');
-// })();
+
 async function renderToVideo(imagesFolder, audioFolder, outputFile) {
     let ffmpegFolder = await setupFfmpeg();
-    let ffmpegPath = path.join(ffmpegFolder, 'ffmpeg');
+    let ffmpegPath = path.join(ffmpegFolder, FFMPEG_EXE);
     const args = {
         images:imagesFolder,
         audio: audioFolder,
@@ -22,6 +20,4 @@ async function renderToVideo(imagesFolder, audioFolder, outputFile) {
     };
     console.log('calling bkkFfmpeg', args);
     await bbkFfmpeg(args);
-    // console.log(stdout);
 }
-

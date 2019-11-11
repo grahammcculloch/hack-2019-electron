@@ -8,17 +8,8 @@ module.exports = { render };
 const fontPlaceholder = 'CAPTION_FONT_FAMILY';
 const fallbackFont = 'Helvetica Neue, Helvetica, Arial, sans-serif';
 
-// (async function mainIIFE() {
-//     try {
-//         await render('./src/rendering/lrc.json', './src/rendering/testBG.jpg', false, 'Kayan Unicode');
-//     } catch (error) {
-//         console.error(error);
-//     }
-// })();
-
 async function render(timingFilePath, bgImagePath, font) {
-    let timings = fs.readFileSync(timingFilePath, { encoding: 'utf-8' });
-    let timingObj = JSON.parse(timings);
+    let timingObj = require(timingFilePath);
     let duration = timingObj[timingObj.length-1].end/1000;
     let fps = 15;
     // let ffmpegLocation = await setupFfmpeg();
@@ -54,7 +45,7 @@ async function render(timingFilePath, bgImagePath, font) {
 
 async function getHtmlPage(timingFilePath, bgImagePath, fps, font) {
     let htmlContent = fs.readFileSync('./src/rendering/render.html', { encoding: 'utf-8' });
-    let timings = fs.readFileSync(timingFilePath, { encoding: 'utf-8' });
+    let timings = require(timingFilePath);
     let backgroundDataUri = null;
     if (bgImagePath) {
         backgroundDataUri = await DataURI(bgImagePath);
@@ -62,7 +53,7 @@ async function getHtmlPage(timingFilePath, bgImagePath, fps, font) {
     return htmlContent.replace('<!-- replaced-HACK -->', `
     <script>
         let fps = ${fps};
-        let timing = ${timings};
+        let timing = ${JSON.stringify(timings)};
         let backgroundDataUri = '${backgroundDataUri}';
         window.onload = function () {
             window.afterLoadKar(timing, backgroundDataUri, fps);

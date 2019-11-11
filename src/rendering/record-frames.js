@@ -1,4 +1,3 @@
-const { spawn } = require('child_process');
 const puppeteer = require('puppeteer');
 const path = require('path');
 
