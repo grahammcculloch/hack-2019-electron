@@ -39,7 +39,9 @@
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject",
     "electron": "electron --inspect=5858 .",
-    "dev": "nf start -p 3000"
+    "dev": "nf start -p 3000",
+    "prepack": "npm run build",
+    "pack": "electron-builder --dir"
   },
   "browserslist": {
     "production": [
@@ -52,5 +54,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "build": {
+    "appId": "bible.karaoke",
+    "files": [
+      "build/*",
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   }
 }
