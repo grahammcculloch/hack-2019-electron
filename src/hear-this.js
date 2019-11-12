@@ -85,4 +85,4 @@ function makeChapter(projectName, bookName, name) {
     chapter.fullPath = path.join(DEFAULT_DATA_DIR, projectName, bookName, name);
     return chapter;
 }
-console.log(JSON.stringify(getProjectStructure()));
+// console.log(JSON.stringify(getProjectStructure()));
