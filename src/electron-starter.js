@@ -6,7 +6,6 @@ const { getProjectStructure } = require('./hear-this');
 const { app, ipcMain, shell } = electron;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
-const spawn = require('child_process').spawn;
 
 const path = require('path');
 const url = require('url');
@@ -20,8 +19,8 @@ let hearThisProjects;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 880,
+    height: 920,
     webPreferences: { nodeIntegration: true },
   });
 
@@ -80,6 +79,9 @@ function handleOpenOutputFolder() {
 
 function handleSubmission() {
   ipcMain.on('did-start-conversion', async (event, args) => {
+    const onProgress = args => {
+      event.sender.send('on-progress', args);
+    };
     console.log('Starting command line', args);
     const { hearThisFolder, backgroundFile, font, outputFile } = args;
     let result = await karaoke.execute(
@@ -87,6 +89,7 @@ function handleSubmission() {
       backgroundFile,
       font,
       outputFile,
+      onProgress,
     );
 
     const retArgs =
@@ -95,24 +98,6 @@ function handleSubmission() {
         : { error: { message: result ? result.toString() : 'Unknown error' } };
     console.log('Command line process finished', retArgs);
     event.sender.send('did-finish-conversion', retArgs);
-  });
-  // Note: this is not called from the UI at the moment:
-  ipcMain.on('did-start-render', (event, args) => {
-    console.log('Starting command line', args);
-    const melt = spawn('C:\\Program Files\\Shotcut\\melt.exe', ['-h']);
-    melt.stdout.on('data', data => {
-      console.log(`stdout: ${data}`);
-    });
-    melt.on('close', code => {
-      console.log(`melt exit code ${code}`);
-      const retArgs = { outputFile: 'render.mp4' };
-      event.sender.send('did-finish-render', retArgs);
-    });
-    // setTimeout(() => {
-    //   const retArgs = { outputFile: 'render.mp4' };
-    //   console.log('Command line process finished', retArgs);
-    //   event.sender.send('did-finish-render', retArgs);
-    // }, 2000);
   });
 }
 

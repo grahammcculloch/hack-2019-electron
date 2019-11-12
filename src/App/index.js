@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { Intent, H1, H6, Classes, Callout } from '@blueprintjs/core';
+import { Intent, H1, H6, Classes, Callout, ProgressBar } from '@blueprintjs/core';
 import Accordion from './components/Accordion';
 import { cards } from './components/cards';
 import ActionButton from './components/ActionButton';
@@ -21,6 +21,7 @@ class App extends React.PureComponent {
     super(props);
     this.state = {
       status: AppStatus.configuring,
+      progress: undefined,
       error: undefined,
     };
     ipcRenderer.on('did-finish-conversion', (event, args) => {
@@ -34,11 +35,15 @@ class App extends React.PureComponent {
         });
       }
     });
+    ipcRenderer.on('on-progress', (event, args) => {
+      this.setState({ progress: args });
+    });
   }
 
   reset = () => {
     this.setState({
       status: AppStatus.configuring,
+      progress: undefined,
       error: undefined,
     });
   };
@@ -68,35 +73,48 @@ class App extends React.PureComponent {
       store: { allValidInputs },
     } = this.props;
     const { error, status } = this.state;
-    if (status === AppStatus.done) {
-      return (
-        <ActionButton
-          large
-          intent={Intent.PRIMARY}
-          text='Open output folder'
-          onClick={this.openOutputFolder}
-        />
-      );
-    } else if (status === AppStatus.error) {
-      return (
-        <Callout title='Uh-oh!' intent={Intent.DANGER}>
-          <p>Looks like something went wrong.</p>
-          <H6>Details</H6>
-          <p className={Classes.TEXT_MUTED}>{error.message}</p>
-          <ActionButton onClick={this.reset} text='OK' />
-        </Callout>
-      );
+    switch(status) {
+      case AppStatus.done:
+        return (
+          <div>
+            <p className={Classes.TEXT_LARGE}>Your Bible Karaoke video has been created!</p>
+            <ActionButton
+              large
+              intent={Intent.PRIMARY}
+              text='Open output folder'
+              onClick={this.openOutputFolder}
+            />
+          </div>
+        );
+      case AppStatus.error:
+        return (
+          <Callout title='Uh-oh!' intent={Intent.DANGER}>
+            <p>Looks like something went wrong.</p>
+            <H6>Details</H6>
+            <p className={Classes.TEXT_MUTED}>{error.message}</p>
+            <ActionButton onClick={this.reset} text='OK' />
+          </Callout>
+        );
+      case AppStatus.processing:
+        const { progress } = this.state;
+        return (
+          <div  className="app__footer-progress">
+            <p>{progress ? progress.status : 'Getting things started...'}</p>
+            <ProgressBar intent={Intent.PRIMARY} value={progress ? progress.percent/100 : 0} />
+          </div>
+        );
+      case AppStatus.configuring:
+      default:
+        return (
+          <ActionButton
+            large
+            intent={Intent.PRIMARY}
+            disabled={!allValidInputs}
+            text='Make my video!'
+            onClick={this.onStart}
+          />
+        );
     }
-    return (
-      <ActionButton
-        large
-        intent={Intent.PRIMARY}
-        loading={status === AppStatus.processing}
-        disabled={!allValidInputs}
-        text='Make my video!'
-        onClick={this.onStart}
-      />
-    );
   }
 
   render() {

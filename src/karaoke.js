@@ -1,29 +1,33 @@
-const bbkTiming = require('bbk/lib/commands/timing').run;
-const renderFrames = require('./rendering/render-frames');
-const renderVideo = require('./rendering/render-video');
-const tempy = require('tempy');
+const bbkConvert = require('bbk/lib/commands/convert').run;
+const process = require('process');
 const path = require('path');
-const shell = require('shelljs');
+const {setupFfmpeg} = require('./ffmpeg');
+
+const FFMPEG_EXE = process.platform == 'win32' ? 'ffmpeg.exe' : 'ffmpeg';
 
 module.exports = {
   execute,
 };
 
-async function execute(hearThisFolder, backgroundFile, font, outputFile) {
+async function execute(hearThisFolder, bgImage, fontFamily, output, onProgress) {
   try {
-    const outputJsFile = tempy.file({extension: 'js'});
-    await bbkTiming({input: path.join(hearThisFolder, 'info.xml'), output: outputJsFile });
-    let framesFolder = await renderFrames.render(outputJsFile, backgroundFile, font);
-    const result = await renderVideo.renderToVideo(
-      framesFolder,
-      hearThisFolder,
-      outputFile,
-    );
-    console.log('Result of renderToVideo', result);
-    // shell.rm('-rf', framesFolder);
-    return outputFile;
+    let ffmpegFolder = await setupFfmpeg();
+    const ffmpegPath =  path.join(ffmpegFolder, FFMPEG_EXE);
+    await bbkConvert({ _: [hearThisFolder], output, bgImage, ffmpegPath, fontFamily, onProgress, f: true });
+    return output;
   } catch (err) {
-    console.warn('Failed to generate karaoke file', err, typeof err);
+    console.warn('Failed to generate karaoke file', err);
     return err;
   }
 }
+
+// (async function main() {
+//     const onProgress = (data) => {
+//       console.log('OnProgress callback', data);
+//     };
+//     try {
+//         await execute("C:\\ProgramData\\SIL\\HearThis\\ENT\\Mark\\1", "C:\\DigiServe\\bible-karaoke\\cross-blog_orig.jpg", "Arial", "output.mp4", onProgress);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// })();
