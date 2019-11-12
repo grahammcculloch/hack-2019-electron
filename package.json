@@ -1,7 +1,11 @@
 {
   "name": "hack-2019-electron",
-  "description": "Bible Karaoke",
-  "author": "DigiServe",
+  "description": "Create 'karaoke-style' videos of Bible passages to help users become comfortable at reading the Bible in another language.",
+  "author": {
+    "name": "DigiServe",
+    "email": "info@digiserve.org",
+    "url": "https://digiserve.org/"
+  },
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -34,6 +38,7 @@
   "homepage": "./",
   "main": "src/electron-starter.js",
   "scripts": {
+    "postinstall": "electron-builder install-app-deps",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
@@ -41,7 +46,8 @@
     "electron": "electron --inspect=5858 .",
     "dev": "nf start -p 3000",
     "prepack": "npm run build",
-    "pack": "electron-builder --dir"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "browserslist": {
     "production": [
@@ -56,7 +62,12 @@
     ]
   },
   "build": {
+    "productName": "Bible Karaoke",
     "appId": "bible.karaoke",
+    "copyright": "Copyright © 2019 ${author}",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
     "files": [
       "build/*",
       "build/**/*",
