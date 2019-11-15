@@ -6,6 +6,7 @@ const {
 
 module.exports = {
   webpack: override(
+      // config => { config.target = 'electron-renderer'; return config; },
       addDecoratorsLegacy(),
       disableEsLint()
   )
