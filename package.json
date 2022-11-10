@@ -9,7 +9,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "electron": "^6.0.11",
+    "electron": "^18.3.7",
     "electron-builder": "^22.1.0",
     "foreman": "^3.0.1"
   },
